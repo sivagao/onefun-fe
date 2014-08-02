@@ -1,7 +1,8 @@
 angular.module('ionicApp', ['ionic', 'angular-websocket'])
     .config(function(WebSocketProvider) {
         WebSocketProvider
-            .uri('ws://172.16.121.65:9092/recv');
+            .uri('ws://localhost:9902');
+        // .uri('ws://172.16.121.65:9092/recv');
     })
     .run(function($rootScope, WebSocket) {
         window._APIHOST = 'http://172.16.121.65:9091';
@@ -22,7 +23,21 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
             console.log('connection');
         });
 
-        WebSocket.onmessage(function(event) {
-            console.log('message: ', event.data);
+        WebSocket.onerror = function(evt) {
+            console.log('connection closed');
+            console.log(evt)
+        };
+
+        WebSocket.onclose = function(evt) {
+            console.log('connection closed');
+            console.log(evt)
+        };
+
+        WebSocket.onmessage(function(evt) {
+            console.log('message: ', evt.data);
+            var msg = JSON.parse(evt.data);
+            if (msg.type === 'chat') {
+                $rootScope.$broadcast('chat.new', msg.data);
+            }
         });
     });

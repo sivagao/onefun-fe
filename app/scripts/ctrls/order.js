@@ -8,7 +8,7 @@ angular.module('ionicApp')
 
         $timeout(function() {
             $state.go('tabs.order-locationed');
-        }, 1000);
+        }, 1500);
 
         // Todo with show not in location page
 
@@ -68,7 +68,7 @@ angular.module('ionicApp')
                 showAlert();
                 $rootScope.preOrderInfo = resp;
                 WebSocket.send(JSON.stringify({
-                    type: 'register',
+                    type: 'registry',
                     data: {
                         fromDeviceId: window._deviceId
                     }

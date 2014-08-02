@@ -49,7 +49,7 @@ angular.module('ionicApp')
             }));
         };
 
-        $scope.$on('chat.new', function(data) {
+        $scope.$on('chat.new', function(xx, data) {
             console.log(data);
             // append to msgList
             $scope.msgList.push(data);
