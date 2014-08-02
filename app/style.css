@@ -336,7 +336,7 @@ body{
 .tplist .tplist_ul .tplist_list .tp_content_c{
     float:left;
     margin-bottom: 10px;
-    max-width: 130px;
+    max-width: 58%;
 }
 .tplist .tplist_ul .tplist_list .tp_content_r{
     float:right;
