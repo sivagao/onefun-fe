@@ -34,15 +34,16 @@ angular.module('ionicApp')
             });
         }
     })
-    .controller('manageListCtrl', function($scope, $ionicActionSheet, $state) {
+    .controller('manageListCtrl', function($scope, $ionicActionSheet, $state, $rootScope) {
         console.log('manageListCtrl');
-        $scope.showActions = function() {
+        $scope.showActions = function(targetCustomer) {
+            $rootScope._targetCustomer = $rootScope.targetCustomer
             $ionicActionSheet.show({
-                titleText: 'ActionSheet Example',
+                // titleText: 'ActionSheet Example',
                 buttons: [{
-                    text: '已上桌 <i class="icon ion-share"></i>'
+                    text: '已上桌'
                 }, {
-                    text: '修改 <i class="icon ion-arrow-move"></i>'
+                    text: '修改'
                 }, ],
                 destructiveText: '取消排号',
                 cancelText: 'Cancel',
@@ -52,16 +53,11 @@ angular.module('ionicApp')
                 },
 
                 buttonClicked: function(index) {
-                    console.log('BUTTON CLICKED', index);
                     if (index === 0) {
                         // 上桌
                     }
                     if (index === 1) {
-                        // go customize page
-                        window._stateParam = {
-                            nickName: 'siva',
-                            customerNum: 21
-                        };
+                        window._stateParam = $rootScope._targetCustomer;
                         $state.go("tabs.order-form");
                     }
                     return true;

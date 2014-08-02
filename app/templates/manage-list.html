@@ -1,18 +1,20 @@
-<ion-view title="可拼" ng-controller="manageListCtrl" class="manage_list">
+<ion-view title="管理界面" ng-controller="manageListCtrl" class="manage_list">
   <ion-content class="padding tablepooling tplist">
     <ul class="tplist_ul">
-      <li class="tplist_list clearfix" ng-repeat="i in [1,2,3]" ng-click="showActions(i)">
+      <li class="tplist_list clearfix"
+        ng-repeat="i in [1,2,3]" ng-click="showActions(i)">
         <div class="tp_num">
-          <span class="tp_num_ordercode">123</span>
+          <span class="tp_num_ordercode">{{i.preOrderNum}}</span>
         </div>
         <div class="tp_content clearfix">
           <div class="tp_content_c">
             <h3 class="title">
-              wilee 共<b>2</b>人 <em>18:20:23</em>
+              {{i.nickName}} 共<b>{{i.customerNum}}</b>人
+              <em>{{i.updateTime|timeage}}</em>
             </h3>
-            <span class="info">手机号：18888888888</span>
-            <span class="intro">我们都是两个姑娘 求加入</span>
-            <span class="detail"><b>拼桌对象：</b>原2010号 张女士 共两人 18888888888</span>
+            <span class="info">手机号：{{i.phoneNum}}</span>
+            <span class="intro">{{i.introText}}</span>
+            <!-- <span class="detail"><b>拼桌对象：</b>原2010号 张女士 共两人 18888888888</span> -->
           </div>
         </div>
       </li>
