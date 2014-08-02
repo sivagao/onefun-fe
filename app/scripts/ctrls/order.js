@@ -22,20 +22,9 @@ angular.module('ionicApp')
                 alert('Unable to get location: ' + error.message);
             });
         }
-
-        function getRestInfo() {
-            // ws
-        }
     })
-    .controller('orderLocationedCtrl', function($scope, $rootScope, $ionicLoading, apiHelper, $timeout, $state) {
-        apiHelper('getResturant', {
-            slug: 'chekucoffee'
-        }, {}).then(function(resp) {
-            console.log(resp);
-            $rootScope.loading && $rootScope.loading.hide();
-            $rootScope.resturantInfo = resp;
-            window._availableTableTypes = _.uniq(_.pluck(resp.tables, 'capacity'));
-        });
+    .controller('orderLocationedCtrl', function($rootScope) {
+        $rootScope.getResturant();
     })
     .controller('orderFormCtrl', function($scope, $rootScope, $ionicPopup, $state, apiHelper, WebSocket) {
 
@@ -96,8 +85,13 @@ angular.module('ionicApp')
         }
     })
     .controller('orderInfoCtrl', function($scope, $rootScope) {
-        console.log('orderInfoCtrl');
+        if (window._myselfOrder) {
+            $rootScope.preOrderInfo = _myselfOrder;
+        }
 
+        if (!$rootScope.resturantInfo) {
+            $rootScope.getResturant();
+        }
         // todo: $state.go('tabs.order-info');
 
         $scope.cancelOrder = function() {

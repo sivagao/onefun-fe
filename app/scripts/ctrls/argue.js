@@ -11,6 +11,7 @@ angular.module('ionicApp')
         };
 
         $scope.goSelfSetting = function() {
+            window._myselfOrder = $scope.myselfOrder;
             $state.go('tabs.order-info');
         };
 

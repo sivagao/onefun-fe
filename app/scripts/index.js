@@ -4,14 +4,25 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
             .uri('ws://localhost:9902');
         // .uri('ws://172.16.121.65:9092/recv');
     })
-    .run(function($rootScope, WebSocket) {
+    .run(function($rootScope, WebSocket, apiHelper) {
         window._APIHOST = 'http://172.16.121.65:9091';
         // window._deviceId = 'acb' + new Date().getTime();
         window._deviceId = localStorage.getItem('deviceId') || 'acb1406978998599';
         $rootScope._deviceId = window._deviceId;
 
+
+        $rootScope.getResturant = function() {
+            apiHelper('getResturant', {
+                slug: 'chekucoffee'
+            }, {}).then(function(resp) {
+                console.log(resp);
+                $rootScope.loading && $rootScope.loading.hide();
+                $rootScope.resturantInfo = resp;
+                window._availableTableTypes = _.uniq(_.pluck(resp.tables, 'capacity'));
+            });
+        };
+
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-            console.log(arguments);
             if (toState.name === 'tabs.argue-detail') {
                 $('.tabs').hide();
             } else {
