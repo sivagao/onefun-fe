@@ -15,3 +15,29 @@
 .home_getnum .home_button .button{
 	width:50%;
 }
+
+.home_getlocal .home_shoplogo{
+	text-align: center;
+	padding:50px 0px;
+}
+.home_getlocal .home_shoplogo .logo{
+	height:64px;
+	width:64px;
+}
+.home_getlocal .home_local .icon{
+	font-size: 30px;
+}
+.home_getlocal .home_local .home_local_info{
+	position: relative;
+	top:-6px;
+	line-height: 30px;
+}
+.home_getlocal .home_content_item{
+	display: block;
+	padding:10px 0px;
+	text-align: center;
+	color: #666666;
+}
+.home_getlocal .home_button .button{
+	width:50%;
+}
