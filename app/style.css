@@ -17,6 +17,7 @@
 }
 
 
+
 .home_getlocal .home_shoplogo{
     text-align: center;
     padding:50px 0px;
@@ -41,6 +42,50 @@
 }
 .home_getlocal .home_button{
     padding:0 10px;
+}
+.home_getlocal .home_numinfo{
+    padding:0 10px;
+    text-align: left;
+}
+.home_getlocal .home_numinfo_dl{
+    border:1px solid #efefef;
+}
+.home_getlocal .home_numinfo .home_numinfo_dd{
+    border-top:1px solid #efefef;
+    padding:10px;
+    padding-left: 40px;
+}
+.home_getlocal .home_numinfo .home_numinfo_dd_together{
+    position:relative;
+}
+.home_getlocal .home_numinfo .home_numinfo_dd_together .toggle{
+    position: absolute;
+    top:-2px;
+    right:0px;
+    margin:0px;
+}
+.home_getlocal .home_numinfo .button{
+    width:150px;
+}
+.home_getlocal .home_numinfo .home_numinfo_dt{
+    padding:10px;
+}
+.home_getlocal .home_numinfo .home_numinfo_dt b{
+    line-height: 24px;
+    font-size: 24px;
+}
+.home_getlocal .home_numinfo .home_numinfo_dt .home_numinfo_text b{
+    position: relative;
+    top:4px;
+}
+.home_getlocal .home_numinfo .home_numinfo_dt .home_numinfo_text {
+    position: relative;
+    top:-3px;
+}
+.home_getlocal .home_numinfo .home_numinfo_dt .icon{
+    font-size: 24px;
+    margin-right: 5px;
+    color:#4a87ee;
 }
 
 
