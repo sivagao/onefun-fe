@@ -4,13 +4,13 @@ angular.module('ionicApp')
             .state('tabs', {
                 url: "/tab",
                 abstract: true,
-                templateUrl: "tabs.html"
+                templateUrl: "templates/templates/tabs.html"
             })
             .state('tabs.order', {
                 url: "/order",
                 views: {
                     'order-tab': {
-                        templateUrl: "order-location.html",
+                        templateUrl: "templates/order-location.html",
                         controller: 'orderLocationCtrl'
                     }
                 }
@@ -19,7 +19,7 @@ angular.module('ionicApp')
                 url: "/order-locationed",
                 views: {
                     'order-tab': {
-                        templateUrl: "order-locationed.html",
+                        templateUrl: "templates/order-locationed.html",
                         controller: 'orderLocationCtrl'
                     }
                 }
@@ -28,7 +28,7 @@ angular.module('ionicApp')
                 url: "/order-form",
                 views: {
                     'order-tab': {
-                        templateUrl: "order-form.html",
+                        templateUrl: "templates/order-form.html",
                         controller: 'orderFormCtrl'
                     }
                 }
@@ -37,7 +37,7 @@ angular.module('ionicApp')
                 url: "/order-info",
                 views: {
                     'order-tab': {
-                        templateUrl: "order-info.html",
+                        templateUrl: "templates/order-info.html",
                         controllder: 'orderInfoCtrl'
                     }
                 }
@@ -46,7 +46,7 @@ angular.module('ionicApp')
                 url: "/argue",
                 views: {
                     'argue-tab': {
-                        templateUrl: "argue-list.html",
+                        templateUrl: "templates/argue-list.html",
                         controllder: 'argueListCtrl'
                     }
                 }
@@ -55,7 +55,7 @@ angular.module('ionicApp')
                 url: "/argue-detail",
                 views: {
                     'argue-tab': {
-                        templateUrl: "argue-detail.html",
+                        templateUrl: "templates/argue-detail.html",
                         controllder: 'argueDetailCtrl'
                     }
                 }
@@ -64,7 +64,7 @@ angular.module('ionicApp')
                 url: "/argue-finish",
                 views: {
                     'argue-tab': {
-                        templateUrl: "argue-finish.html",
+                        templateUrl: "templates/argue-finish.html",
                         controllder: 'argueFinishCtrl'
                     }
                 }
@@ -73,7 +73,7 @@ angular.module('ionicApp')
                 url: "/profile",
                 views: {
                     'profile-tab': {
-                        templateUrl: "profile-detail.html",
+                        templateUrl: "templates/profile-detail.html",
                         controllder: 'profileDetailCtrl'
                     }
                 }
@@ -82,7 +82,7 @@ angular.module('ionicApp')
                 url: "/manage-list",
                 views: {
                     'argue-tab': {
-                        templateUrl: "manage-list.html",
+                        templateUrl: "templates/manage-list.html",
                         controllder: 'manageListCtrl'
                     }
                 }
@@ -91,7 +91,7 @@ angular.module('ionicApp')
                 url: "/manage-item",
                 views: {
                     'argue-tab': {
-                        templateUrl: "manage-item.html",
+                        templateUrl: "templates/manage-item.html",
                         controllder: 'manageItemCtrl'
                     }
                 }
