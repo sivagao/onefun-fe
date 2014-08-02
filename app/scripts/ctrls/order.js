@@ -68,7 +68,7 @@ angular.module('ionicApp')
         function showAlert() {
             var alertPopup = $ionicPopup.alert({
                 title: '预约成功！',
-                template: '您可以到拼桌页面，查找附件的人，一起来.'
+                template: '您可以到拼桌页面，查找附近的人，一起来.'
             });
             alertPopup.then(function(res) {
                 $state.go('tabs.order-info');
