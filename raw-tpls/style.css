@@ -128,3 +128,86 @@
 	border:1px solid #f7f7f7;
 	border-radius: 3px;
 }
+
+.tplist .tplist_title{
+	position: relative;
+	padding:0 10px;
+	background: #ffffff;
+	margin: 0px;
+	color: #4684f1;
+	font-size: 16px;
+	line-height: 40px;
+	border-bottom: 1px solid #efefef;
+}
+.tplist .tplist_title .title_text{
+
+}
+.tplist .tplist_title .icon{
+	margin-right: 5px;
+}
+.tplist .tplist_title .button{
+	position: absolute;
+	width:100px;
+	right:10px;
+	top:5px;
+}
+
+.tplist .tplist_ul .tplist_list_first{
+	background-color: #f7f7f7;
+}
+.tplist .tplist_ul .tplist_list{
+	padding:10px;
+	border-bottom: 1px solid #efefef;
+}
+.tplist .tplist_ul .tplist_list .tp_num{
+	display: block;
+	float:left;
+}
+.tplist .tplist_ul .tplist_list .tp_content{
+	display: block;
+	float:right;
+	width:80%;
+	min-width: 300px;
+}
+.tplist .tplist_ul .tplist_list .tp_content_c{
+	float:left;
+	margin-bottom: 10px;
+}
+.tplist .tplist_ul .tplist_list .tp_content_r{
+	float:right;
+}
+.tplist .tplist_ul .tplist_list .tp_content_r .button{
+	width:100px;
+}
+.tplist .tplist_ul .tplist_list .tp_content_c .title{
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.tplist .tplist_ul .tplist_list .tp_content_c .title .title_button{
+	display: inline-block;
+	padding:4px;
+	border:1px solid #145fd7;
+	color: #6a87ee;
+	border-radius: 3px;
+	margin: 0 10px;
+}
+.tplist .tplist_ul .tplist_list .tp_content_c .info{
+	display: block;
+	color:#999999;
+}
+.tplist .tplist_ul .tplist_list .tp_content_b{
+	clear:both;
+	border:1px solid #f7f7f7;
+	border-radius: 3px;
+	padding:5px;
+	color: #666666;
+}
+.tplist .tplist_ul .tplist_list_first .tp_content_b{
+	border-color: #efefef;
+	background-color: #ffffff;
+}
+
+
+
+
+
