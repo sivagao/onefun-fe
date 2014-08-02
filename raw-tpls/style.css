@@ -1,0 +1,17 @@
+.home_getnum .home_logo{
+	text-align: center;
+	padding:50px 0px;
+}
+.home_getnum .home_logo .logo{
+	height:64px;
+	width:64px;
+}
+.home_getnum .home_content_item{
+	display: block;
+	padding:10px 0px;
+	text-align: center;
+	color: #666666;
+}
+.home_getnum .home_button .button{
+	width:50%;
+}
