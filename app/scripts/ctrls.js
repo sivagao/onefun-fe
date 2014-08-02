@@ -36,6 +36,13 @@ angular.module('ionicApp')
     })
     .controller('orderFormCtrl', function($scope, $rootScope, $ionicPopup, $state, apiHelper) {
 
+        // prefill data
+        if (window._stateParam) {
+            $scope.info = window._stateParam;
+        } else {
+            $scope.info = {};
+        }
+
         $scope.submitOrder = function() {
             // form validator
             $scope.info.deviceId = window._deviceId;
@@ -82,6 +89,20 @@ angular.module('ionicApp')
         // interval -getMsgList(myself, hisDevice)
         // postMsgList
         // beArgued - popUp, agreeArgue - popUp
+        $scope.isShowFooter = false;
+        $('.tabs').hide();
+
+        $scope.postMsg = function() {
+            return;
+            mySocket.emit('', {
+                type: 'chat',
+                data: {
+                    fromDeviceId: window._deviceId,
+                    toDeviceId: 'abc-321',
+                    msg: $scope.chatText
+                }
+            });
+        };
     })
     .controller('argueFinishCtrl', function($scope, $rootScope) {
 
@@ -113,7 +134,11 @@ angular.module('ionicApp')
                     }
                     if (index === 1) {
                         // go customize page
-                        $state.go("tabs.manage-item", {});
+                        window._stateParam = {
+                            nickName: 'siva',
+                            customerNum: 21
+                        };
+                        $state.go("tabs.order-form");
                     }
                     return true;
                 },
@@ -126,9 +151,6 @@ angular.module('ionicApp')
             });
         };
         // 评论和详情 - baidu it?! commentList
-    })
-    .controller('manageItemCtrl', function($scope) {
-
     });
 
 angular.bootstrap(document, ['ionicApp']);

@@ -26,10 +26,10 @@ angular.module('ionicApp')
             })
             .state('tabs.order-form', {
                 url: "/order-form",
-                controllder: 'orderFormCtrl',
                 views: {
                     'order-tab': {
-                        templateUrl: "order-form.html"
+                        templateUrl: "order-form.html",
+                        controller: 'orderFormCtrl'
                     }
                 }
             })

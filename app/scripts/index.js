@@ -1,4 +1,34 @@
-angular.module('ionicApp', ['ionic']).run(function($rootScope) {
-    window._APIHOST = 'http://172.16.121.65:9091';
-    window._deviceId = 'acb' + new Date().getTime();
-});
+angular.module('ionicApp', ['ionic', 'angular-websocket'])
+    .config(function(WebSocketProvider) {
+        WebSocketProvider
+            .uri('ws://172.16.121.65:9092/recv');
+    })
+    .run(function($rootScope, WebSocket) {
+        window._APIHOST = 'http://172.16.121.65:9091';
+        window._deviceId = 'acb' + new Date().getTime();
+
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+            console.log(arguments);
+            if (toState.name === 'tabs.argue-detail') {
+                $('.tabs').hide();
+            } else {
+                $('.tabs').show();
+            }
+        });
+
+        WebSocket.onopen(function() {
+            console.log('connection');
+            WebSocket.send(JSON.stringify({
+                type: 'chat',
+                data: {
+                    fromDeviceId: window._deviceId,
+                    toDeviceId: 'abc-321',
+                    msg: 'fda' || $scope.chatText
+                }
+            }));
+        });
+
+        WebSocket.onmessage(function(event) {
+            console.log('message: ', event.data);
+        });
+    });
