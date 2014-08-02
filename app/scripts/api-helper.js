@@ -74,6 +74,7 @@ angular.module('ionicApp')
     ])
     .factory('apiHelperInterceptor', function($q) {
         $notice = console;
+        $notice.success = console.log;
         return {
             request: function(config) {
                 config.originUrl = config.url;

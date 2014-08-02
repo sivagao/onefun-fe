@@ -4,7 +4,7 @@ angular.module('ionicApp')
             .state('tabs', {
                 url: "/tab",
                 abstract: true,
-                templateUrl: "templates/templates/tabs.html"
+                templateUrl: "templates/tabs.html"
             })
             .state('tabs.order', {
                 url: "/order",
@@ -20,7 +20,7 @@ angular.module('ionicApp')
                 views: {
                     'order-tab': {
                         templateUrl: "templates/order-locationed.html",
-                        controller: 'orderLocationCtrl'
+                        controller: 'orderLocationedCtrl'
                     }
                 }
             })

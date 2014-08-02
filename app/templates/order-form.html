@@ -25,8 +25,14 @@
               <span class="tip_warn_text">
                 <b>提示：</b>接受拼桌不影响正常排队，还有机会快速入座，结识新朋友哦~</div>
               </span>
-            <div class="tip_show" ng-show="info.isAccept">
-              <span class="tip_show_text"><i class="icon ion-coffee"></i>自动为您分配：<b>4人桌</b></span>
+            <div class="tip_show" ng-show="info.isAccept && info.customerNum">
+              <span class="tip_show_text" ng-show="info.tableCapacity">
+                <i class="icon ion-coffee"></i>
+                自动为您分配：<b>{{info.tableCapacity}}人桌</b>
+              </span>
+              <span class="tip_warn_text" ng-hide="info.tableCapacity">
+                  没那么大的桌子，你们分开吃吧....
+              </span>
               <textarea class="tip_show_textarea"
                 placeholder="一句话自我介绍" ng-model="info.introText"></textarea>
             </div>

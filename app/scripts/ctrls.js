@@ -1,13 +1,9 @@
 angular.module('ionicApp')
-    .controller('orderLocationCtrl', function($scope, $rootScope, $http, $ionicLoading, apiHelper, $timeout, $state) {
+    .controller('orderLocationCtrl', function($scope, $rootScope, $ionicLoading, apiHelper, $timeout, $state) {
 
-        $scope.loading = $ionicLoading.show({
+        $rootScope.loading = $ionicLoading.show({
             content: '正在定位请稍后...',
             showBackdrop: false
-        });
-
-        apiHelper('getRestaurantList').then(function(resp) {
-            console.log(resp);
         });
 
         $timeout(function() {
@@ -17,13 +13,11 @@ angular.module('ionicApp')
         // Todo with show not in location page
 
         // getLocation();
-
         function getLocation() {
             navigator.geolocation.getCurrentPosition(function(pos) {
                 console.log(pos);
-                // $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
                 // with backend
-                $scope.loading.hide();
+                $rootScope.loading.hide();
             }, function(error) {
                 alert('Unable to get location: ' + error.message);
             });
@@ -31,8 +25,17 @@ angular.module('ionicApp')
 
         function getRestInfo() {
             // ws
-
         }
+    })
+    .controller('orderLocationedCtrl', function($scope, $rootScope, $ionicLoading, apiHelper, $timeout, $state) {
+        apiHelper('getResturant', {
+            slug: 'chekucoffee'
+        }, {}).then(function(resp) {
+            console.log(resp);
+            $rootScope.loading && $rootScope.loading.hide();
+            $rootScope.resturantInfo = resp;
+            window._availableTableTypes = _.uniq(_.pluck(resp.tables, 'capacity'));
+        });
     })
     .controller('orderFormCtrl', function($scope, $rootScope, $ionicPopup, $state, apiHelper) {
 
@@ -43,13 +46,35 @@ angular.module('ionicApp')
             $scope.info = {};
         }
 
+        $scope.$watch('info.customerNum', function(val) {
+            var _tableType = findTableType(val);
+            if (_tableType !== Infinity) {
+                $scope.info.tableCapacity = _tableType;
+            } else {
+                $scope.info.tableCapacity = null;
+            }
+        });
+
         $scope.submitOrder = function() {
             // form validator
+            // mock
+            $scope.info = {
+                "isAccept": 1,
+                "nickName": "siva",
+                "customerNum": 5,
+                "phoneNum": "18600024232",
+                "introText": "hello xixixi",
+                "deviceId": "acb1406973507008"
+            };
+            // end mock
+
             $scope.info.deviceId = window._deviceId;
+            $scope.info.isAccept = $scope.info.isAccept ? 1 : 0;
             apiHelper('postPreOrderInfo', {
                 data: $scope.info
             })['finally'](function(resp) {
                 showAlert();
+                $rootScope.preOrderInfo = $scope.info;
             });
         };
 
@@ -62,6 +87,15 @@ angular.module('ionicApp')
                 $state.go('tabs.order-info');
             });
         }
+
+        function findTableType(val) {
+            if (!window._availableTableTypes) {
+                window._availableTableTypes = [4, 6, 8];
+            }
+            return _.min(_.filter(window._availableTableTypes, function(item) {
+                return item > val;
+            }));
+        }
     })
     .controller('orderInfoCtrl', function($scope, $rootScope) {
         console.log('orderInfoCtrl');
@@ -69,7 +103,7 @@ angular.module('ionicApp')
         // todo: $state.go('tabs.order-info');
 
         $scope.cancelOrder = function() {
-
+            // ajax cleanup
         };
 
         $scope.reSetting = function() {
