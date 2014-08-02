@@ -708,3 +708,13 @@ body{
 .manage_list .tplist .tplist_ul .tplist_list .tp_content_c{
     max-width: none;
 }
+.manage_list .tplist_nav_ul li{
+    float:left;
+    margin: 5px;
+}
+.manage_list .tplist_nav_ul .button{
+    height:30px;
+    line-height: 30px;
+    min-height: 30px;
+    font-size: 14px;
+}
