@@ -64,3 +64,23 @@
 	margin:0px;
 	right:0px;
 }
+.home_getinfo .tip{
+	padding:0 10px;
+}
+.home_getinfo .tip .icon{
+	font-size: 16px;
+}
+.home_getinfo .tip .tip_warn_text{
+	color:#ef4e3a;
+	line-height: 24px;
+}
+.home_getinfo .tip .tip_show_text{
+	color:#4a87ee;
+	line-height: 24px;
+}
+.home_getinfo .tip .tip_show_textarea{
+	resize:none;
+	padding: 10px;
+	border:1px solid #f7f7f7;
+	border-radius: 3px;
+}
