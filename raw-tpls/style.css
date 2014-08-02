@@ -153,6 +153,10 @@
 	right:10px;
 	top:5px;
 }
+.tplist .tplist_title .button .icon{
+	margin-left:5px;
+	font-size: 12px;
+}
 
 .tplist .tplist_ul .tplist_list_first{
 	background-color: #f7f7f7;
