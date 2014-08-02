@@ -21,6 +21,11 @@ body{
 }
 
 /*通用按钮    */
+.button-small{
+    min-height: 24px;
+    height: 24px;
+    line-height: 24px;
+}
 .onefun-button{
     display: inline-block;
     text-decoration: none;
@@ -59,7 +64,33 @@ body{
     background-color: #e97462;
     color: #ffffff;
 }
-.onefun-button:active,.onefun-button-useless:active,.onefun-button-red:active{
+.onefun-button-green{
+    display: inline-block;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #bccb76;
+    color: #ffffff;
+    border:none;
+    border-radius: 40px;
+}
+.onefun-button-green:hover{
+    background-color: #bccb76;
+    color: #ffffff;
+}
+.onefun-button-yellow{
+    display: inline-block;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #ffcc33;
+    color: #ffffff;
+    border:none;
+    border-radius: 40px;
+}
+.onefun-button-yellow:hover{
+    background-color: #ffcc33;
+    color: #ffffff;
+}
+.onefun-button:active,.onefun-button-useless:active,.onefun-button-red:active,.onefun-button-green:active,.onefun-button-yellow:active{
     box-shadow: inset 3px 3px 3px rgba(0,0,0,.3);
 }
 
@@ -163,8 +194,9 @@ body{
 }
 .home_getlocal .home_numinfo .home_numinfo_dd{
     border-top:1px solid #efefef;
+    margin-bottom:5px; 
     padding:10px;
-    padding-left: 40px;
+    padding-left: 20px;
 }
 .home_getlocal .home_numinfo .home_numinfo_dd_together{
     position:relative;
@@ -179,26 +211,36 @@ body{
     width:150px;
 }
 .home_getlocal .home_numinfo .home_numinfo_dt{
+    position: relative;
+    margin-bottom: 5px;
     padding:10px;
+    padding-left: 20px;
+}
+.home_getlocal .home_numinfo .home_numinfo_dt button{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    width: 80px;
 }
 .home_getlocal .home_numinfo .home_numinfo_dt b{
     line-height: 24px;
     font-size: 24px;
+    color: #fdff97;
 }
 .home_getlocal .home_numinfo .home_numinfo_dt .home_numinfo_text b{
-    position: relative;
-    top:4px;
 }
 .home_getlocal .home_numinfo .home_numinfo_dt .home_numinfo_text {
-    position: relative;
-    top:-3px;
+    font-weight: normal;
 }
 .home_getlocal .home_numinfo .home_numinfo_dt .icon{
     font-size: 24px;
     margin-right: 5px;
     color:#4a87ee;
 }
-
+.home_getlocal .home_numinfo .home_numinfo_dd_intro{
+    background: #ffffff;
+    color:#e5a84f;
+}
 
 .home_getinfo{
 
@@ -244,10 +286,10 @@ body{
     position: relative;
     padding:0 10px;
     margin: 0px;
-    color: #4684f1;
+    color: #999999;
     font-size: 16px;
     line-height: 40px;
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid #cbe4de;
 }
 .tplist .tplist_title .title_text{
 
@@ -259,14 +301,13 @@ body{
     position: absolute;
     width:100px;
     right:10px;
-    top:5px;
+    top:10px;
+    padding:0 10px;
 }
 
-.tplist .tplist_ul .tplist_list_first{
-}
 .tplist .tplist_ul .tplist_list{
     padding:10px;
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid #cde4de;
 }
 .tplist .tplist_ul .tplist_list .tp_num{
     display: block;
@@ -276,19 +317,21 @@ body{
     display: block;
     float:right;
     width:80%;
-    min-width: 300px;
+    min-width: 240px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_c{
     float:left;
     margin-bottom: 10px;
+    max-width: 160px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_r{
     float:right;
 }
 .tplist .tplist_ul .tplist_list .tp_content_r .button{
-    width:100px;
+    width:80px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_c .title{
+    color: #666666;
     font-size: 14px;
     margin-bottom: 5px;
 }
@@ -306,14 +349,22 @@ body{
 }
 .tplist .tplist_ul .tplist_list .tp_content_b{
     clear:both;
-    border:1px solid #f7f7f7;
-    border-radius: 3px;
-    padding:5px;
-    color: #666666;
+    color: #e5a84f;
+}
+.tplist .tplist_ul .tplist_list_first{
+    background: #6fc4c7;
+}
+.tplist .tplist_ul .tplist_list_first .tp_num{
+    color:#ffffff;
+}
+.tplist .tplist_ul .tplist_list_first .tp_content_c .title{
+    color: #ffffff
+}
+.tplist .tplist_ul .tplist_list_first .tp_content_c .info{
+    color: #ffffff
 }
 .tplist .tplist_ul .tplist_list_first .tp_content_b{
-    border-color: #efefef;
-    background-color: #ffffff;
+    color: #feffd5
 }
 
 
@@ -499,7 +550,7 @@ body{
 }
 .setting .setting_ul .setting_list{
     padding:10px;
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid #cde4de;
 }
 .setting .setting_ul .setting_list .tp_num{
     display: block;
@@ -521,7 +572,7 @@ body{
 .setting .setting_ul .setting_list .tp_content{
     display: block;
     float:right;
-    width:80%;
+    width:100%;
     min-width: 240px;
 }
 .setting .setting_ul .setting_list .tp_content_c{
@@ -530,6 +581,9 @@ body{
 }
 .setting .setting_ul .setting_list .tp_content_r{
     float:right;
+}
+.setting .setting_ul .setting_list .tp_content_r .time{
+    color: #999999;
 }
 .setting .setting_ul .setting_list .tp_content_r .button{
     width:100px;
@@ -548,7 +602,7 @@ body{
 }
 .setting .setting_ul .setting_list .tp_content_c .info{
     display: block;
-    color:#999999;
+    color:#e5a440;
 }
 .setting .setting_ul .setting_list .tp_content_c .icon {
     margin-right: 3px;
@@ -558,7 +612,7 @@ body{
     border:1px solid #f7f7f7;
     border-radius: 3px;
     padding:5px;
-    color: #666666;
+    color: #e7a33e;
 }
 .setting .setting_ul .setting_list_first .tp_content_b{
     border-color: #efefef;

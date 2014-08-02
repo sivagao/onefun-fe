@@ -15,6 +15,8 @@
               <dl class="home_numinfo_dl">
                 <dt class="home_numinfo_dt">
                   <span class="home_numinfo_text">排队号：<b>{{preOrderInfo.preOrderNum}}</b></span>
+                  <button class="button button-small onefun-button-yellow"
+                    ng-click="cancelOrder()">取消排队</button>
                 </dt>
                 <dd class="home_numinfo_dd">
                   <label>称&nbsp;&nbsp;&nbsp;呼：</label><span>{{preOrderInfo.nickName}}(共{{preOrderInfo.customerNum}}人)</span>
@@ -35,14 +37,10 @@
                      </div>
                   </label>
                 </dd>
-                <dd class="home_numinfo_dd">
+                <dd class="home_numinfo_dd home_numinfo_dd_intro">
                   <span class="home_numinfo_text">
                     {{preOrderInfo.introText}}
                   </span>
-                </dd>
-                <dd class="home_numinfo_dd">
-                  <button class="button button-small button-positive"
-                    ng-click="cancelOrder()">取消排队</button>
                 </dd>
               </dl>
             </span>
