@@ -72,17 +72,11 @@ angular.module('ionicApp')
         });
     })
     .controller('argueDetailCtrl', function($scope, $rootScope, WebSocket, $timeout, $ionicPopup, apiHelper) {
-        // chat mode
-        // isMaster -> showAgrueBtn
-        // interval -getMsgList(myself, hisDevice)
-        // postMsgList
-        // beArgued - popUp, agreeArgue - popUp
         $timeout(function() {
             $('.tabs').hide();
             $('.chatpanel').removeClass('has-tabs').find('.scroll').css('min-height', '100%');
             $('.chat-input').css('position', 'fixed');
         });
-
         $scope.msgList = [];
 
         function getMsgList() {
@@ -112,20 +106,27 @@ angular.module('ionicApp')
             $scope.msgList.push(data);
         });
 
-        $scope.$on('agree.other', function(xx, data) {
-            console.log(data);
-            // append to msgList
-            $scope.msgList.push(data);
+
+        $scope.agree = {};
+        $scope.$on('agree', function(xx, data) {
             $scope.agree.other = true;
         });
 
-        $scope.getMsgClass = function(msg) {
-            if (msg.fromDeviceId === window._deviceId) {
-                return 'self';
-            } else {
-                return 'other';
-            }
+        $scope.agreeTojoin = function() {
+            WebSocket.send(JSON.stringify({
+                type: 'agree',
+                data: {
+                    toDeviceId: $rootScope._arguePeople.deviceId
+                }
+            }));
         };
+
+        $scope.$watch('agree', function(all) {
+            if (!all) return;
+            if (all.other && all.self) {
+                $scope.mergeOrder();
+            }
+        }, true);
 
         $scope.mergeOrder = function() {
             apiHelper('mergeOrder', {
@@ -134,30 +135,25 @@ angular.module('ionicApp')
                     toDeviceId: $rootScope._arguePeople.deviceId
                 }
             }).then(function() {
-                // popup and then continue chat?!
-                $scope.agree = {
-                    other: true,
-                    done: true
-                };
                 var alertPopup = $ionicPopup.alert({
                     title: '合并订单成功',
+                    template: '你们可以接着聊天！'
+                });
+            }, function() {
+                // error handler
+                $ionicPopup.alert({
+                    title: '合并订单失败',
                     template: '你们可以接着聊天！'
                 });
             });
         };
 
-        $scope.agreeTojoin = function() {
-            $scope.mergeOrder();
-            return;
-            WebSocket.send(JSON.stringify({
-                type: 'agree',
-                data: {
-                    order: $rootScope._arguePeople.deviceId,
-                    self: window._deviceId
-                }
-            }));
-
-            // toggle self
+        $scope.getMsgClass = function(msg) {
+            if (msg.fromDeviceId === window._deviceId) {
+                return 'self';
+            } else {
+                return 'other';
+            }
         };
     })
     .controller('argueFinishCtrl', function($scope, $rootScope) {

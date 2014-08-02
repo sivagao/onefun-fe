@@ -6,21 +6,20 @@
           对方：{{_arguePeople.nickName}} 共 {{_arguePeople.customerNum}} 人
         </td>
          <td class="status">
-          <button class="onefun-button-useless">{{agree.other?'已经统一':'未同意'}}</button>
+          <button class="onefun-button-useless">{{agree.other?'已同意':'未同意'}}</button>
         </td>
       </tr>
       <tr>
          <td class="user">我：</td>
          <td class="status">
            <button class="onefun-button"
-            ng-click="agreeTojoin()" ng-hide="agree.done">同意</button>
-           <button class="onefun-button-useless"
-            ng-show="agree.done">已经同意</button>
+            ng-disabled="agree.self"
+            ng-click="agreeTojoin()">
+            {{agree.self?'已同意':'未同意'}}
+          </button>
          </td>
       </tr>
     </table>
-
-
 
     <ol class="discussion chat-list">
       <li
