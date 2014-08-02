@@ -243,7 +243,6 @@ body{
 .tplist .tplist_title{
     position: relative;
     padding:0 10px;
-    background: #ffffff;
     margin: 0px;
     color: #4684f1;
     font-size: 16px;
@@ -264,7 +263,6 @@ body{
 }
 
 .tplist .tplist_ul .tplist_list_first{
-    background-color: #f7f7f7;
 }
 .tplist .tplist_ul .tplist_list{
     padding:10px;
@@ -415,6 +413,7 @@ body{
 .argue_detail .pane .scroll{
     position: absolute;
     width: 100%;
+    min-height: 100%;
     top:0px;
     bottom:0px;
 }
