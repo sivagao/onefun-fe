@@ -12,9 +12,11 @@
 	text-align: center;
 	color: #666666;
 }
-.home_getnum .home_button .button{
-	width:50%;
+.home_getnum .home_button{
+	padding:0 10px;
 }
+
+
 
 .home_getlocal .home_shoplogo{
 	text-align: center;
@@ -38,6 +40,27 @@
 	text-align: center;
 	color: #666666;
 }
-.home_getlocal .home_button .button{
-	width:50%;
+.home_getlocal .home_button{
+	padding:0 10px;
+}
+
+
+.home_getinfo{
+
+}
+.home_getinfo .item-choice{
+	position: relative;
+	padding:0px;
+}
+.home_getinfo .item-choice-label{
+	display: inline-block;
+	color: #999999;
+	font-size: 14px;
+	line-height: 45px;
+	padding-left: 10px;
+}
+.home_getinfo .item-choice-toggle{
+	position: absolute;
+	margin:0px;
+	right:0px;
 }

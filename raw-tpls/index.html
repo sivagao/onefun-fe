@@ -21,13 +21,13 @@
           </h1>
           <div class="home_content">
             <span class="home_content_item home_local"><i class="icon ion-looping"></i>正在定位</span>
-            <span class="home_content_item home_status">您还未取号</span>
+            <span class="home_content_item home_status">您还未取号…</span>
             <span class="home_content_item home_button">
-              <button class="button button-light">取号</button>
+              <button class="button button-block button-light">取号</button>
             </span>
           </div>
         </div> -->
-        <div class="home_getlocal">
+<!--         <div class="home_getlocal">
           <h1 class="home_shoplogo">
             <img class="logo" src="shop_logo.png" />
           </h1>
@@ -37,10 +37,46 @@
                 <b class="home_local_info">您现在的位置：海底捞金泉广场店</b>
             </span>
             <span class="home_content_item home_detail">现在共有<b>18</b>组，共计<b>30</b>人在排队</span>
-            <span class="home_content_item home_status">您还未取号</span>
+            <span class="home_content_item home_status">您还未取号…</span>
             <span class="home_content_item home_button">
-              <button class="button button-positive">取号</button>
+              <button class="button button-block button-positive">取号</button>
             </span>
+          </div>
+        </div> -->
+        <div class="home_getinfo">
+          <div class="list list-inset">
+            <label class="item item-input">
+              <input type="number" placeholder="人数">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="称呼">
+            </label>
+            <label class="item item-input">
+              <input type="text" placeholder="手机号">
+            </label>
+            <span class="item item-choice">
+              <span class="item-choice-label">是否接受拼桌</span>
+              <label class="item-choice-toggle toggle">
+                 <input type="checkbox" checked="on">
+                 <div class="track">
+                   <div class="handle"></div>
+                 </div>
+              </label>
+            </span>
+          </div>
+          <div class="tip">
+            <div class="tip_warn">
+              <span class="tip_warn_text">
+                <b>提示：</b>接受拼桌不影响正常排队，还有机会快速入座，结识新朋友哦~</div>
+              </span>
+            <div class="tip_show">
+              <span class="tip_show_text">自动为您分配：<b>4人桌</b></span>
+              <textarea class="tip_show_area" placeholder="一句话自我介绍">
+              </textarea>
+            </div>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-positive">取号</button>
           </div>
         </div>
       </ion-tab>
