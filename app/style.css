@@ -332,14 +332,17 @@ body{
     bottom:0px;
 }
 .chatpanel .self .messages{
+    max-width: 200px;
     border: none;
     box-shadow: none;
     border-radius: 5px;
     background: #becd7c;
     color: #333333;
+    float:right;
 }
 .chatpanel .self .avatar{
     margin-left: 10px;
+    float:right;
 }
 .chatpanel .self .avatar:after{
     border:8px solid #becd7c;
@@ -351,14 +354,17 @@ body{
     box-shadow:none;
 }
 .chatpanel .other .messages{
+    max-width: 200px;
     border: none;
     box-shadow: none;
     border-radius: 5px;
     background: #71c4c9;
     color: #333333;
+    float: left;
 }
 .chatpanel .other .avatar{
     margin-right: 10px;
+    float:left;
 }
 .chatpanel .other .avatar:after{
     border:8px solid #71c4c9;
