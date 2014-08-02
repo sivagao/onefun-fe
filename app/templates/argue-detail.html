@@ -13,14 +13,16 @@
          </td>
       </tr>
     </table>
+
     <ol class="discussion chat-list">
-      <li class="other">
+      <li ng-repeat="i in msgList"
+        ng-class="getMsgClass(i)">
         <div class="avatar">
           <img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/5/profile/profile-80_9.jpg" />
         </div>
         <div class="messages">
-          <p>yeah, they do early flights cause they connect with big airports.  they wanna get u to your connection</p>
-          <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+          <p>{{i.msg}}</p>
+          <time datetime="2009-11-13T20:00">51 min</time>
         </div>
       </li>
       <li class="self">

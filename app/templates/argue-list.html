@@ -20,7 +20,8 @@
               {{i|inferLeftStr}}</span>
           </div>
           <div class="tp_content_r">
-            <button class="button button-positive">设置</button>
+            <button class="button button-positive"
+              ng-click="goSelfSetting()">设置</button>
           </div>
           <div class="tp_content_b">
             {{i.introText||'还没设置....'}}
@@ -42,7 +43,8 @@
               {{i|inferLeftStr}}</span>
           </div>
           <div class="tp_content_r">
-            <button class="button button-positive">联系一下</button>
+            <button class="button button-positive"
+              ng-click="goArgueDetail(i)">联系一下</button>
           </div>
           <div class="tp_content_b">
             {{i.introText}}

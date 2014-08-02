@@ -102,35 +102,50 @@ angular.module('ionicApp')
 
         };
     })
-    .controller('argueListCtrl', function($scope, $state, apiHelper) {
+    .controller('argueListCtrl', function($scope, $rootScope, $state, apiHelper) {
 
         // refresh, goOrderForm, goArgueDetail
         // getAvaibleList[with my special item]
         // todo: cancelArgue
 
+        $scope.goArgueDetail = function(who) {
+            $rootScope._arguePeople = who;
+            $state.go('tabs.argue-detail');
+        };
+
+        $scope.goSelfSetting = function() {
+            // set val
+            $state.go('tabs.order-info');
+        };
+
         apiHelper('getAvailableList').then(function(resp) {
             $scope.availableList = resp;
         });
     })
-    .controller('argueDetailCtrl', function($scope, $rootScope) {
+    .controller('argueDetailCtrl', function($scope, $rootScope, WebSocket) {
         // chat mode
         // isMaster -> showAgrueBtn
         // interval -getMsgList(myself, hisDevice)
         // postMsgList
         // beArgued - popUp, agreeArgue - popUp
-        $scope.isShowFooter = false;
         $('.tabs').hide();
-
         $scope.postMsg = function() {
-            return;
-            mySocket.emit('', {
+            WebSocket.send(JSON.stringify({
                 type: 'chat',
                 data: {
                     fromDeviceId: window._deviceId,
-                    toDeviceId: 'abc-321',
-                    msg: $scope.chatText
+                    toDeviceId: $rootScope._arguePeople.deviceId,
+                    msg: $scope.chatText || 'fda'
                 }
-            });
+            }));
+        };
+
+        $scope.getMsgClass = function(msg) {
+            if (msg.deviceId === window._deviceId) {
+                return 'self';
+            } else {
+                return 'other';
+            }
         };
     })
     .controller('argueFinishCtrl', function($scope, $rootScope) {
