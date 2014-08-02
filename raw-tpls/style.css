@@ -129,6 +129,8 @@
 	border-radius: 3px;
 }
 
+
+
 .tplist .tplist_title{
 	position: relative;
 	padding:0 10px;
@@ -162,6 +164,8 @@
 .tplist .tplist_ul .tplist_list .tp_num{
 	display: block;
 	float:left;
+}
+.tplist .tplist_ul .tplist_list .tp_num b{
 }
 .tplist .tplist_ul .tplist_list .tp_content{
 	display: block;
@@ -203,6 +207,68 @@
 	color: #666666;
 }
 .tplist .tplist_ul .tplist_list_first .tp_content_b{
+	border-color: #efefef;
+	background-color: #ffffff;
+}
+
+
+
+
+
+
+.setting .setting_ul .setting_list_first{
+	background-color: #f7f7f7;
+}
+.setting .setting_ul .setting_list{
+	padding:10px;
+	border-bottom: 1px solid #efefef;
+}
+.setting .setting_ul .setting_list .tp_num{
+	display: block;
+	float:left;
+}
+.setting .setting_ul .setting_list .tp_num b{
+}
+.setting .setting_ul .setting_list .tp_content{
+	display: block;
+	float:right;
+	width:80%;
+	min-width: 300px;
+}
+.setting .setting_ul .setting_list .tp_content_c{
+	float:left;
+	margin-bottom: 10px;
+}
+.setting .setting_ul .setting_list .tp_content_r{
+	float:right;
+}
+.setting .setting_ul .setting_list .tp_content_r .button{
+	width:100px;
+}
+.setting .setting_ul .setting_list .tp_content_c .title{
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.setting .setting_ul .setting_list .tp_content_c .title .title_button{
+	display: inline-block;
+	padding:4px;
+	border:1px solid #145fd7;
+	color: #6a87ee;
+	border-radius: 3px;
+	margin: 0 10px;
+}
+.setting .setting_ul .setting_list .tp_content_c .info{
+	display: block;
+	color:#999999;
+}
+.setting .setting_ul .setting_list .tp_content_b{
+	clear:both;
+	border:1px solid #f7f7f7;
+	border-radius: 3px;
+	padding:5px;
+	color: #666666;
+}
+.setting .setting_ul .setting_list_first .tp_content_b{
 	border-color: #efefef;
 	background-color: #ffffff;
 }
