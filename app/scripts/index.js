@@ -89,6 +89,14 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
 
         WebSocket.onopen(function() {
             console.log('connection');
+
+            // registry them with deviceId
+            WebSocket.send(JSON.stringify({
+                type: 'registry',
+                data: {
+                    fromDeviceId: window._deviceId
+                }
+            }));
         });
 
         WebSocket.onerror = function(evt) {

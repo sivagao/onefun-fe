@@ -8,6 +8,7 @@ angular.module('ionicApp')
 
         $timeout(function() {
             $state.go('tabs.order-locationed');
+            $rootScope.loading.hide();
         }, 1500);
 
         // Todo with show not in location page
@@ -32,7 +33,7 @@ angular.module('ionicApp')
         if (window._stateParam) {
             $scope.info = window._stateParam;
         } else {
-            $scope.info = {};
+            $scope.info = localStorage.getItem('orederInfo') || {};
         }
 
         $scope.$watch('info.customerNum', function(val) {
@@ -47,21 +48,24 @@ angular.module('ionicApp')
         $scope.submitOrder = function() {
             // form validator
             $scope.info.deviceId = window._deviceId;
-            $scope.info.isAccept = $scope.info.isAccept ? 1 : 0;
+            if (!$scope.info.tableCapacity) {
+                return;
+            }
+
             if ($scope.info.tableCapacity === $scope.info.customerNum) {
                 $scope.info.isAccept = 0;
+            } else {
+                $scope.info.isAccept = $scope.info.isAccept ? 1 : 0;
             }
+
             apiHelper('postPreOrderInfo', {
                 data: $scope.info
             }).then(function(resp) {
                 showAlert();
                 $rootScope.preOrderInfo = resp;
-                WebSocket.send(JSON.stringify({
-                    type: 'registry',
-                    data: {
-                        fromDeviceId: window._deviceId
-                    }
-                }));
+                localStorage.setItem('orederInfo',
+                    _.pick($scope.info, 'nickName', 'isAccept', 'introText')
+                );
             });
         };
 
