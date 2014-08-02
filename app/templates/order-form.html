@@ -1,0 +1,39 @@
+      <ion-view title="提交信息">
+        <ion-content class="home_getinfo padding">
+          <div class="list list-inset">
+            <label class="item item-input">
+              <input type="number"
+                placeholder="人数" ng-model="info.customerNum">
+            </label>
+            <label class="item item-input">
+              <input type="text"
+                placeholder="称呼" ng-model="info.nickName">
+            </label>
+            <label class="item item-input">
+              <input type="text"
+                placeholder="手机号" ng-model="info.phoneNum">
+            </label>
+            <ion-toggle ng-init="info.isAccept=true"
+              ng-model="info.isAccept"
+              ng-checked="info.isAccept">
+              是否接受拼桌
+            </ion-toggle>
+
+          </div>
+          <div class="tip">
+            <div class="tip_warn" ng-hide="info.isAccept">
+              <span class="tip_warn_text">
+                <b>提示：</b>接受拼桌不影响正常排队，还有机会快速入座，结识新朋友哦~</div>
+              </span>
+            <div class="tip_show" ng-show="info.isAccept">
+              <span class="tip_show_text"><i class="icon ion-coffee"></i>自动为您分配：<b>4人桌</b></span>
+              <textarea class="tip_show_textarea"
+                placeholder="一句话自我介绍" ng-model="info.introText"></textarea>
+            </div>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-positive"
+              ng-click="submitOrder()">取号</button>
+          </div>
+        </ion-content>
+      </ion-nav-view>

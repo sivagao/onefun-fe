@@ -1,0 +1,27 @@
+       <div class="list" ng-controller="manageListCtrl">
+        <div class="item item-avatar">
+          <div class="item-image">
+            <span>1302</span>
+          </div>
+          <h2>
+            张女士，共 2 人
+            <span>可拼桌</span>
+            <span>2014年08月02日</span></h2>
+          <p> 手机号： 186000343434.</p>
+          <p>
+            留言： 我们实时蜂蜜水大幅度撒吗范德萨放到撒
+          </p>
+        </div>
+
+        <div class="item item-avatar" ng-repeat="i in [1,2,3]" ng-click="showActions(i)">
+          <div class="item-image">
+            <span>1302</span>
+          </div>
+          <h2>
+            张女士，共 2 人
+            <span>可拼桌</span>
+            <span>2014年08月02日</span></h2>
+          <p> 手机号： 186000343434.</p>
+        </div>
+
+       </div>
