@@ -7,7 +7,8 @@ angular.module('ionicApp')
 
             'postPreOrderInfo': 'POST /preorder',
 
-            'getAvailableList': 'GET /preorder/list'
+            'getAvailableList': 'GET /preorder/list',
 
+            'mergeOrder': 'POST /mergeorder'
         });
     });

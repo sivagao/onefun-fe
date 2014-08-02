@@ -10,6 +10,9 @@ angular.module('ionicApp')
     }).filter('inferLeftStr', function() {
         return function(i) {
             var count = i.tableCapacity - i.customerNum;
+            if (count === 0) {
+                return '已满'
+            }
             if (count === 1) {
                 return '可接受1人'
             } else {

@@ -3,12 +3,17 @@
     <table class="chat-status">
       <tr>
          <td class="user">对方：张先生 共 三人</td>
-         <td class="status"><button class="onefun-button-useless">已同意</button></td>
+         <td class="status">
+          <button class="onefun-button-useless">{{agree.other?'已经统一':'未同意'}}</button>
+        </td>
       </tr>
       <tr>
          <td class="user">我：</td>
          <td class="status">
-           <button class="onefun-button">同意</button>
+           <button class="onefun-button"
+            ng-click="agreeTojoin()" ng-hide="agree.done">同意</button>
+           <button class="onefun-button-useless"
+            ng-show="agree.done">已经同意</button>
          </td>
       </tr>
     </table>
@@ -21,25 +26,6 @@
         </div>
         <div class="messages">
           <p>{{i.msg}}</p>
-        </div>
-      </li>
-      <li class="self clearfix">
-        <div class="avatar">
-          <img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/3/profile/profile-80_20.jpg" />
-        </div>
-        <div class="messages">
-          <p>That makes sense.</p>
-          <p>It's a pretty small airport.</p>
-        </div>
-      </li>
-      <li class="other clearfix">
-        <div class="avatar">
-          <img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/5/profile/profile-80_9.jpg" />
-        </div>
-        <div class="messages">
-          <p>that mongodb thing looks good, huh?</p>
-          <p>
-            tiny master db, and huge document store</p>
         </div>
       </li>
     </ol>

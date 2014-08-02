@@ -38,7 +38,6 @@ angular.module('ionicApp')
 
                 return $http(_.extend({
                     method: method,
-                    cache: true,
                     url: _urlPrfix + _buildUrl(apiStr.split(' ')[1], arguments),
                 }, opt));
             }
