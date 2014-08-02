@@ -160,7 +160,7 @@ angular.module('ionicApp')
         });
 
         $scope.getMsgClass = function(msg) {
-            if (msg.deviceId === window._deviceId) {
+            if (msg.fromDeviceId === window._deviceId) {
                 return 'self';
             } else {
                 return 'other';

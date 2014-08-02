@@ -18,11 +18,14 @@
       </tr>
     </table>
 
+
+
     <ol class="discussion chat-list">
-      <li ng-repeat="i in msgList"
+      <li
+        ng-repeat="i in msgList"
         ng-class="getMsgClass(i)">
         <div class="avatar">
-          <img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/5/profile/profile-80_9.jpg" />
+          <div random-avatar></div>
         </div>
         <div class="messages">
           <p>{{i.msg}}</p>
