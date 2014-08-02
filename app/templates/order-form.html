@@ -1,17 +1,17 @@
-      <ion-view title="提交信息">
+      <ion-view title="提交信息" class="order_submit">
         <ion-content class="home_getinfo padding">
           <div class="list list-inset">
             <label class="item item-input">
               <input type="number"
-                placeholder="人数" ng-model="info.customerNum">
+                placeholder="人数:" ng-model="info.customerNum">
             </label>
             <label class="item item-input">
               <input type="text"
-                placeholder="称呼" ng-model="info.nickName">
+                placeholder="称呼:" ng-model="info.nickName">
             </label>
             <label class="item item-input">
               <input type="text"
-                placeholder="手机号" ng-model="info.phoneNum">
+                placeholder="手机号:" ng-model="info.phoneNum">
             </label>
             <ion-toggle
               ng-hide="info.customerNum === info.tableCapacity"
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="padding">
-            <button class="button button-block button-positive"
+            <button class="button onefun-button-red"
               ng-click="submitOrder()">取号</button>
           </div>
         </ion-content>

@@ -1,4 +1,4 @@
-      <ion-view title="预约成功">
+      <ion-view title="预约成功" class="order_info">
         <ion-content class="padding home_getlocal">
           <h1 class="home_shoplogo">
             <img class="logo" ng-src="{{resturantInfo.img|hostImg}}" />
@@ -14,18 +14,17 @@
             <span class="home_content_item home_numinfo">
               <dl class="home_numinfo_dl">
                 <dt class="home_numinfo_dt">
-                  <i class="icon ion-checkmark-circled"></i>
-                  <span class="home_numinfo_text">排队号码是：<b>{{preOrderInfo.preOrderNum}}</b></span>
+                  <span class="home_numinfo_text">排队号：<b>{{preOrderInfo.preOrderNum}}</b></span>
                 </dt>
                 <dd class="home_numinfo_dd">
-                  <label>称呼：</label><span>{{preOrderInfo.nickName}}(共{{preOrderInfo.customerNum}}人)</span>
+                  <label>称&nbsp;&nbsp;&nbsp;呼：</label><span>{{preOrderInfo.nickName}}(共{{preOrderInfo.customerNum}}人)</span>
                 </dd>
                 <dd class="home_numinfo_dd">
-                  <label>手机：</label><span>{{preOrderInfo.phoneNum}}</span>
+                  <label>手&nbsp;&nbsp;&nbsp;机：</label><span>{{preOrderInfo.phoneNum}}</span>
                 </dd>
                 <dd class="home_numinfo_dd home_numinfo_dd_together"
                   ng-hide="preOrderInfo.customerNum === preOrderInfo.tableCapacity">
-                  <label>拼桌：</label>
+                  <label>拼&nbsp;&nbsp;&nbsp;桌：</label>
                   <span>{{preOrderInfo.isAccept?'接受': '不接受'}}</span>
                   <label class="item-choice-toggle toggle">
                      <input type="checkbox"
