@@ -37,7 +37,7 @@ angular.module('ionicApp')
             window._availableTableTypes = _.uniq(_.pluck(resp.tables, 'capacity'));
         });
     })
-    .controller('orderFormCtrl', function($scope, $rootScope, $ionicPopup, $state, apiHelper) {
+    .controller('orderFormCtrl', function($scope, $rootScope, $ionicPopup, $state, apiHelper, WebSocket) {
 
         // prefill data
         if (window._stateParam) {
@@ -67,6 +67,12 @@ angular.module('ionicApp')
             }).then(function(resp) {
                 showAlert();
                 $rootScope.preOrderInfo = resp;
+                WebSocket.send(JSON.stringify({
+                    type: 'register',
+                    data: {
+                        fromDeviceId: window._deviceId
+                    }
+                }));
             });
         };
 
@@ -102,99 +108,3 @@ angular.module('ionicApp')
 
         };
     })
-    .controller('argueListCtrl', function($scope, $rootScope, $state, apiHelper) {
-
-        // refresh, goOrderForm, goArgueDetail
-        // getAvaibleList[with my special item]
-        // todo: cancelArgue
-
-        $scope.goArgueDetail = function(who) {
-            $rootScope._arguePeople = who;
-            $state.go('tabs.argue-detail');
-        };
-
-        $scope.goSelfSetting = function() {
-            // set val
-            $state.go('tabs.order-info');
-        };
-
-        apiHelper('getAvailableList').then(function(resp) {
-            $scope.availableList = resp;
-        });
-    })
-    .controller('argueDetailCtrl', function($scope, $rootScope, WebSocket) {
-        // chat mode
-        // isMaster -> showAgrueBtn
-        // interval -getMsgList(myself, hisDevice)
-        // postMsgList
-        // beArgued - popUp, agreeArgue - popUp
-        $('.tabs').hide();
-        $scope.postMsg = function() {
-            WebSocket.send(JSON.stringify({
-                type: 'chat',
-                data: {
-                    fromDeviceId: window._deviceId,
-                    toDeviceId: $rootScope._arguePeople.deviceId,
-                    msg: $scope.chatText || 'fda'
-                }
-            }));
-        };
-
-        $scope.getMsgClass = function(msg) {
-            if (msg.deviceId === window._deviceId) {
-                return 'self';
-            } else {
-                return 'other';
-            }
-        };
-    })
-    .controller('argueFinishCtrl', function($scope, $rootScope) {
-
-    })
-    .controller('profileDetailCtrl', function($scope, $rootScope) {
-        // todo
-    })
-    .controller('manageListCtrl', function($scope, $ionicActionSheet, $state) {
-        console.log('manageListCtrl');
-        $scope.showActions = function() {
-            $ionicActionSheet.show({
-                titleText: 'ActionSheet Example',
-                buttons: [{
-                    text: '已上桌 <i class="icon ion-share"></i>'
-                }, {
-                    text: '修改 <i class="icon ion-arrow-move"></i>'
-                }, ],
-                destructiveText: '取消排号',
-                cancelText: 'Cancel',
-
-                cancel: function() {
-                    console.log('取消');
-                },
-
-                buttonClicked: function(index) {
-                    console.log('BUTTON CLICKED', index);
-                    if (index === 0) {
-                        // 上桌
-                    }
-                    if (index === 1) {
-                        // go customize page
-                        window._stateParam = {
-                            nickName: 'siva',
-                            customerNum: 21
-                        };
-                        $state.go("tabs.order-form");
-                    }
-                    return true;
-                },
-
-                destructiveButtonClicked: function() {
-                    console.log('DESTRUCT');
-                    // $http
-                    return true;
-                }
-            });
-        };
-        // 评论和详情 - baidu it?! commentList
-    });
-
-angular.bootstrap(document, ['ionicApp']);
