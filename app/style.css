@@ -316,19 +316,74 @@ body{
     text-align: right;
 }
 .chat-status .status button{
-    width:60px;
+    width:80px;
+}
+/*消息列表*/
+.chatpanel .pane{
+
+}
+.chatpanel .pane .scroll{
+    position: absolute;
+    width: 100%;
+    top:0px;
+    bottom:0px;
+}
+.chatpanel .pane .has-tabs{
+    bottom:0px;
+}
+.chatpanel .self .messages{
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    background: #becd7c;
+    color: #333333;
+}
+.chatpanel .self .avatar{
+    margin-left: 10px;
+}
+.chatpanel .self .avatar:after{
+    border:8px solid #becd7c;
+    top:10px;
+    left:-10px;
+    border-right:none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow:none;
+}
+.chatpanel .other .messages{
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    background: #71c4c9;
+    color: #333333;
+}
+.chatpanel .other .avatar{
+    margin-right: 10px;
+}
+.chatpanel .other .avatar:after{
+    border:8px solid #71c4c9;
+    top:10px;
+    right:-10px;
+    border-left:none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow:none;
 }
 /*输入信息*/
-.chat-input{
+
+.chatpanel .chat-input{
+    position: fixed;
     background: #ffcc33;
     padding:10px;
+    width: 100%;
+    bottom: 0px;
 }
-.chat-input .text{
+.chatpanel .chat-input .text{
     background: #feffd5;
     padding-left: 15px;
     border-radius: 40px;
 }
-.chat-input .send{
+.chatpanel .chat-input .send{
     border:none;
     background: none;
     height:40px;
