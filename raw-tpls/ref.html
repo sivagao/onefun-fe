@@ -1,0 +1,851 @@
+<!-- footer show -->
+<body>
+    <ion-content padding="true"
+        ng-class="{'has-footer': isShowFooter}">
+        <!-- DEFINE YOUR UI HERE -->
+    </ion-content>
+    <ion-footer-bar class="bar-assertive"
+        ng-if="isShowFooter"></ion-footer-bar>
+</body>
+
+<!-- scroll -->
+<body>
+    <ion-view title="Home" hide-nav-bar="true">
+      <ion-scroll zooming="true" direction="xy"
+        style="width: 500px; height: 500px">
+        <div style="width: 5000px; height: 5000px; background: url('https://upload.wikimedia.org/wikipedia/commons/a/ad/Europe_geological_map-en.jpg') repeat"></div>
+      </ion-scroll>
+    </ion-view>
+</body>
+
+<!-- modal  -->
+<body ng-controller="AppCtrl">
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Contacts</h1>
+    <div class="buttons">
+      <button class="button button-icon ion-compose"
+        ng-click="modal.show()">
+      </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="contact in contacts">
+        {{contact.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <script id="modal.html" type="text/ng-template">
+    <div class="modal" ng-controller="ModalCtrl">
+      <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title">New Contact</h1>
+        <button class="button button-clear button-primary"
+            ng-click="modal.hide()">Cancel</button>
+      </ion-header-bar>
+      <ion-content>
+        <div class="padding">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">First Name</span>
+              <input ng-model="newUser.firstName" type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Last Name</span>
+              <input ng-model="newUser.lastName" type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Email</span>
+              <input ng-model="newUser.email" type="text">
+            </label>
+            <button class="button button-full button-positive"
+                ng-click="createContact()">Create</button>
+          </div>
+        </div>
+      </ion-content>
+    </div>
+  </script>
+</body>
+<script type="text/javascript">
+    $ionicModal.fromTemplateUrl('modal.html', function(modal) {
+      $scope.modal = modal;
+    }, {
+      animation: 'slide-in-up',
+      focusFirstInput: true
+    });
+</script>
+
+
+<!-- popup -->
+<body class="padding" ng-controller="PopupCtrl">
+  <button class="button button-dark" ng-click="showPopup()">
+    show
+  </button>
+  <button class="button button-primary" ng-click="showConfirm()">
+    Confirm
+  </button>
+  <button class="button button-positive" ng-click="showAlert()">
+    Alert
+  </button>
+  <script id="popup-template.html" type="text/ng-template">
+    <input ng-model="data.wifi" type="text" placeholder="Password">
+  </script>
+</body>
+<script type="text/javascript">
+    angular.module('mySuperApp', ['ionic'])
+    .controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
+
+     // Triggered on a button click, or some other target
+     $scope.showPopup = function() {
+       $scope.data = {}
+
+       // An elaborate, custom popup
+       var myPopup = $ionicPopup.show({
+         template: '<input type="password" ng-model="data.wifi">',
+         title: 'Enter Wi-Fi Password',
+         subTitle: 'Please use normal things',
+         scope: $scope,
+         buttons: [
+           { text: 'Cancel' },
+           {
+             text: '<b>Save</b>',
+             type: 'button-positive',
+             onTap: function(e) {
+               if (!$scope.data.wifi) {
+                 //don't allow the user to close unless he enters wifi password
+                 e.preventDefault();
+               } else {
+                 return $scope.data.wifi;
+               }
+             }
+           },
+         ]
+       });
+
+       myPopup.then(function(res) {
+         console.log('Tapped!', res);
+       });
+
+       $timeout(function() {
+          myPopup.close(); //close the popup after 3 seconds for some reason
+       }, 3000);
+      };
+       // A confirm dialog
+       $scope.showConfirm = function() {
+         var confirmPopup = $ionicPopup.confirm({
+           title: 'Consume Ice Cream',
+           template: 'Are you sure you want to eat this ice cream?'
+         });
+         confirmPopup.then(function(res) {
+           if(res) {
+             console.log('You are sure');
+           } else {
+             console.log('You are not sure');
+           }
+         });
+       };
+
+       // An alert dialog
+       $scope.showAlert = function() {
+         var alertPopup = $ionicPopup.alert({
+           title: 'Don\'t eat that!',
+           template: 'It might taste good'
+         });
+         alertPopup.then(function(res) {
+           console.log('Thank you for not eating my delicious ice cream cone');
+         });
+       };
+    });
+</script>
+
+<!-- List -->
+<body ng-controller="MyCtrl">
+
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+        <button
+            class="button button-icon icon ion-ios7-minus-outline"
+            ng-click="data.showDelete = !data.showDelete; data.showReorder = false">
+        </button>
+        <h1 class="title">Ionic Delete/Option Buttons</h1>
+        <button
+            class="button"
+            ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+              Reorder
+        </button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <ion-list
+        show-delete="data.showDelete"
+        show-reorder="data.showReorder">
+
+      <ion-item
+        ng-repeat="item in items"
+        item="item" href="#/item/{{item.id}}">
+        Item {{ item.id }}
+        <ion-delete-button class="ion-minus-circled"
+            ng-click="onItemDelete(item)">
+        </ion-delete-button>
+
+        <!-- 拖拽会出现 -->
+        <ion-option-button class="button-assertive"
+            ng-click="edit(item)">
+          Edit
+        </ion-option-button>
+        <ion-option-button class="button-calm"
+            ng-click="share(item)">
+          Share
+        </ion-option-button>
+
+        <ion-reorder-button class="ion-navicon"
+            on-reorder="moveItem(item, $fromIndex, $toIndex)">
+        </ion-reorder-button>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</body>
+<script type="text/javascript">
+    $scope.moveItem = function(item, fromIndex, toIndex) {
+      $scope.items.splice(fromIndex, 1);
+      $scope.items.splice(toIndex, 0, item);
+    };
+
+    $scope.onItemDelete = function(item) {
+      $scope.items.splice($scope.items.indexOf(item), 1);
+    };
+</script>
+
+<!-- Toggle -->
+<body ng-controller="MainCtrl">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Toggles</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      <div class="list">
+        <div class="item item-divider">
+          Settings
+        </div>
+        <ion-toggle
+            ng-repeat="item in settingsList"
+            ng-model="item.checked"
+            ng-checked="item.checked">
+            <!-- ng-true-value="Subscribed"
+            ng-false-value="Unubscribed"
+            ng-change="pushNotificationChange()" -->
+          {{ item.text }}
+        </ion-toggle>
+        <div class="item">
+          <pre ng-bind="settingsList | json"></pre>
+        </div>
+
+    </ion-content>
+</body>
+
+
+<!-- side-menu -->
+<div ng-controller="MainCtrl">
+  <ion-nav-view></ion-nav-view>
+</div>
+
+<script id="event-menu.html" type="text/ng-template">
+  <ion-side-menus>
+
+    <ion-side-menu-content>
+
+      <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>
+      </ion-nav-bar>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon"
+          ng-click="toggleLeft()">
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-view
+        animation="no-animation"
+        name="menuContent">
+      </ion-nav-view>
+
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+      <ion-header-bar class="bar-assertive">
+        <h1 class="title">Left Menu</h1>
+      </ion-header-bar>
+      <ion-content>
+        <ul class="list">
+          <a href="#/event/check-in" class="item" menu-close>Check-in</a>
+          <a href="#/event/attendees" class="item" menu-close>Attendees</a>
+        </ul>
+      </ion-content>
+    </ion-side-menu>
+
+  </ion-side-menus>
+</script>
+
+<script id="home.html" type="text/ng-template">
+  <ion-view title="Welcome">
+    <ion-content padding="true">
+      <p>Swipe to the right to reveal the left menu.</p>
+    </ion-content>
+  </ion-view>
+</script>
+<script id="check-in.html" type="text/ng-template">
+  <ion-view title="Event Check-in">
+    <ion-content>
+      <form class="list" ng-show="showForm">
+        <div class="item item-divider">
+          Attendee Info
+        </div>
+        <label class="item item-input">
+          <input type="text" placeholder="First Name" ng-model="attendee.firstname">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Last Name" ng-model="attendee.lastname">
+        </label>
+        <div class="item item-divider">
+          Shirt Size
+        </div>
+        <ion-radio ng-repeat="shirtSize in shirtSizes"
+                   ng-value="shirtSize.value"
+                   ng-model="attendee.shirtSize">
+          {{ shirtSize.text }}
+        </ion-radio>
+        <div class="item item-divider">
+          Lunch
+        </div>
+        <ion-toggle ng-model="attendee.vegetarian">
+          Vegetarian
+        </ion-toggle>
+        <div class="padding">
+          <button class="button button-block" ng-click="submit()">Checkin</button>
+        </div>
+      </form>
+
+      <div ng-hide="showForm">
+        <pre ng-bind="attendee | json"></pre>
+        <a href="#/event/attendees">View attendees</a>
+      </div>
+
+    </ion-content>
+  </ion-view>
+</script>
+<script id="attendees.html" type="text/ng-template">
+  <ion-view title="Event Attendees" left-buttons="leftButtons">
+    <ion-content>
+      <div class="list">
+        <ion-toggle ng-repeat="attendee in attendees | orderBy:'firstname' | orderBy:'lastname'"
+                    ng-model="attendee.arrived"
+                    ng-change="arrivedChange(attendee)">
+          {{ attendee.firstname }}
+          {{ attendee.lastname }}
+        </ion-toggle>
+        <div class="item item-divider">
+          Activity
+        </div>
+        <div class="item" ng-repeat="msg in activity">
+          {{ msg }}
+        </div>
+      </div>
+    </ion-content>
+  </ion-view>
+</script>
+
+<script type="text/javascript">
+    angular.module('ionicApp', ['ionic'])
+    .config(function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+        .state('eventmenu', {
+          url: "/event",
+          abstract: true,
+          templateUrl: "event-menu.html"
+        })
+        .state('eventmenu.home', {
+          url: "/home",
+          views: {
+            'menuContent' :{
+              templateUrl: "home.html"
+            }
+          }
+        })
+        .state('eventmenu.checkin', {
+          url: "/check-in",
+          views: {
+            'menuContent' :{
+              templateUrl: "check-in.html",
+              controller: "CheckinCtrl"
+            }
+          }
+        })
+        .state('eventmenu.attendees', {
+          url: "/attendees",
+          views: {
+            'menuContent' :{
+              templateUrl: "attendees.html",
+              controller: "AttendeesCtrl"
+            }
+          }
+        })
+
+      $urlRouterProvider.otherwise("/event/home");
+    })
+
+    .controller('MainCtrl', function($scope, $ionicSideMenuDelegate) {
+      $scope.attendees = [
+        { firstname: 'Nicolas', lastname: 'Cage' },
+        { firstname: 'Jean-Claude', lastname: 'Van Damme' },
+        { firstname: 'Keanu', lastname: 'Reeves' },
+        { firstname: 'Steven', lastname: 'Seagal' }
+      ];
+      $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+      };
+    })
+
+    .controller('CheckinCtrl', function($scope) {
+      $scope.showForm = true;
+      $scope.shirtSizes = [
+        { text: 'Large', value: 'L' },
+        { text: 'Medium', value: 'M' },
+        { text: 'Small', value: 'S' }
+      ];
+      $scope.attendee = {};
+      $scope.submit = function() {
+        if(!$scope.attendee.firstname) {
+          alert('Info required');
+          return;
+        }
+        $scope.showForm = false;
+        $scope.attendees.push($scope.attendee);
+      };
+    })
+
+    .controller('AttendeesCtrl', function($scope) {
+      $scope.activity = [];
+      $scope.arrivedChange = function(attendee) {
+        var msg = attendee.firstname + ' ' + attendee.lastname;
+        msg += (!attendee.arrived ? ' has arrived, ' : ' just left, ');
+        msg += new Date().getMilliseconds();
+        $scope.activity.push(msg);
+        if($scope.activity.length > 3) {
+          $scope.activity.splice(0, 1);
+        }
+      };
+
+    });
+</script>
+
+
+<!-- shrink header -->
+<body>
+  <fake-statusbar></fake-statusbar>
+
+  <ion-pane>
+    <ion-header-bar class="bar-positive">
+      <div class="buttons">
+        <button class="button button-icon ion-navicon"></button>
+      </div>
+      <h1 class="title">Things</h1>
+    </ion-header-bar>
+
+    <ion-content header-shrink scroll-event-interval="5">
+      <div style="height: 64px;"></div>
+      <div class="list card">
+        <div class="item item-avatar">
+          <img src="http://ionicframework.com/img/docs/mcfly.jpg">
+          <h2>Marty McFly</h2>
+          <p>November 05, 1955</p>
+        </div>
+        <div class="item item-body">
+          <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
+          <p>
+            This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+            the content is from a card-body consisting of an image and paragraph text. The footer
+            consists of tabs, icons aligned left, within the card-footer.
+          </p>
+          <p>
+            <a href="#" class="subdued">1 Like</a>
+            <a href="#" class="subdued">5 Comments</a>
+          </p>
+        </div>
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" href="#">
+            <i class="icon ion-thumbsup"></i>
+            Like
+          </a>
+          <a class="tab-item" href="#">
+            <i class="icon ion-chatbox"></i>
+            Comment
+          </a>
+          <a class="tab-item" href="#">
+            <i class="icon ion-share"></i>
+            Share
+          </a>
+        </div>
+      </div>
+    </ion-content>
+  </ion-pane>
+</body>
+
+<script type="text/javascript">
+  angular.module('ionic.example', ['ionic'])
+  .directive('fakeStatusbar', function() {
+    return {
+      restrict: 'E',
+      replace: true,
+      template: '<div class="fake-statusbar"><div class="pull-left">Carrier</div><div class="time">3:30 PM</div><div class="pull-right">50%</div></div>'
+    }
+  })
+  .directive('headerShrink', function($document) {
+    var fadeAmt;
+
+    var shrink = function(header, content, amt, max) {
+      amt = Math.min(44, amt);
+      fadeAmt = 1 - amt / 44;
+      ionic.requestAnimationFrame(function() {
+        header.style[ionic.CSS.TRANSFORM] = 'translate3d(0, -' + amt + 'px, 0)';
+        for(var i = 0, j = header.children.length; i < j; i++) {
+          header.children[i].style.opacity = fadeAmt;
+        }
+      });
+    };
+
+    return {
+      restrict: 'A',
+      link: function($scope, $element, $attr) {
+        var starty = $scope.$eval($attr.headerShrink) || 0;
+        var shrinkAmt;
+
+        var header = $document[0].body.querySelector('.bar-header');
+        var headerHeight = header.offsetHeight;
+
+        $element.bind('scroll', function(e) {
+          if(e.detail.scrollTop > starty) {
+            // Start shrinking
+            shrinkAmt = headerHeight - Math.max(0, (starty + headerHeight) - e.detail.scrollTop);
+            shrink(header, $element[0], shrinkAmt, headerHeight);
+          } else {
+            shrink(header, $element[0], 0, headerHeight);
+          }
+        });
+      }
+    }
+  })
+</script>
+
+<!-- Loading Bar -->
+<body ng-controller="MainCtrl">
+
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Hello!</h1>
+  </ion-header-bar>
+
+  <div class="bar bar-loading bar-assertive" ng-if="data.isLoading">
+    Loading...
+  </div>
+
+  <ion-content ng-class="{'has-loading': data.isLoading}">
+    <ion-toggle ng-model="data.isLoading">Toggle me to toggle loading!</ion-toggle>
+  </ion-content>
+</body>
+<style type="text/css">
+    .bar.bar-loading {
+      display: block;
+      height: 24px;
+
+      /* starts right below a normal header */
+      top: 44px;
+
+      /* make the text centered vertically and horizontally */
+      text-align: center;
+      padding: 0;
+      line-height: 24px;
+
+      /* transition 'sliding down' (check below)*/
+      -webkit-transition: 200ms all;
+    }
+
+    /*
+     * make the content's top changes animate.
+     * might not always look good, but looks
+     * good when our loader is added & removed
+     */
+    .has-header {
+      -webkit-transition: 200ms top;
+    }
+    .has-header.has-loading {
+      /* 44px (header) + 24px */
+      top: 68px;
+    }
+
+    /* make loading bar slide up/down */
+    .bar-loading.ng-enter,
+    .bar-loading.ng-leave.ng-leave-active {
+      height: 0;
+      border-width: 0px;
+    }
+    .bar-loading.ng-enter.ng-enter-active,
+    .bar-loading.ng-leave {
+      height: 24px;
+      border-width: 1px;
+    }
+</style>
+
+<!-- Todo:  -->
+
+
+frosted glass effect
+app intro walkthrough
+google maps example
+sign-in, then toast
+flickr search example
+
+pull to refresh
+
+tabs and navigation
+thumbnail list
+accordion list
+
+checkbox
+actionsheet
+radio buttons
+
+clooection-repeat
+swipeable card
+
+<!-- collection-repeat -->
+<ion-header-bar class="bar-light bar-subheader">
+    <input type="search"
+      placeholder="Filter contacts..."
+      ng-model="search"
+      ng-focus="searchFocused = true"
+      ng-blur="searchFocused = false"
+      ng-change="scrollTop()">
+    <button ng-if="search.length"
+      class="button button-icon ion-android-close input-button"
+      ng-click="clearSearch()">
+    </button>
+</ion-header-bar>
+<ion-content>
+    <div class="list">
+      <a class="item my-item"
+        collection-repeat="item in getContacts()"
+        collection-item-height="getItemHeight(item)"
+        collection-item-width="getItemWidth(item)"
+        ng-href="https://www.google.com/#q={{item.first_name + '+' + item.last_name}}"
+        ng-style="{'line-height': getItemHeight(item) + 'px'}"
+        ng-class="{'item-divider': item.isLetter}">
+        <img ng-if="!item.isLetter" ng-src="http://placekitten.com/60/{{55 + ($index % 10)}}">
+        {{item.letter || (item.first_name+' '+item.last_name)}}
+      </a>
+    </div>
+</ion-content>
+<script type="text/javascript">
+    .controller('MainCtrl', function($scope, $ionicScrollDelegate, filterFilter) {
+      var letters = $scope.letters = [];
+      var contacts = $scope.contacts = [];
+      var currentCharCode = 'A'.charCodeAt(0) - 1;
+
+      //window.CONTACTS is defined below
+      window.CONTACTS
+        .sort(function(a, b) {
+          return a.last_name > b.last_name ? 1 : -1;
+        })
+        .forEach(function(person) {
+          //Get the first letter of the last name, and if the last name changes
+          //put the letter in the array
+          var personCharCode = person.last_name.toUpperCase().charCodeAt(0);
+          //We may jump two letters, be sure to put both in
+          //(eg if we jump from Adam Bradley to Bob Doe, add both C and D)
+          var difference = personCharCode - currentCharCode;
+          for (var i = 1; i <= difference; i++) {
+            addLetter(currentCharCode + i);
+          }
+          currentCharCode = personCharCode;
+          contacts.push(person);
+        });
+
+      //If names ended before Z, add everything up to Z
+      for (var i = currentCharCode + 1; i <= 'Z'.charCodeAt(0); i++) {
+        addLetter(i);
+      }
+
+      function addLetter(code) {
+        var letter = String.fromCharCode(code);
+        contacts.push({
+          isLetter: true,
+          letter: letter
+        });
+        letters.push(letter);
+      }
+
+      //Letters are shorter, everything else is 52 pixels
+      $scope.getItemHeight = function(item) {
+        return item.isLetter ? 40 : 100;
+      };
+      $scope.getItemWidth = function(item) {
+        return '100%';
+      };
+
+      $scope.scrollBottom = function() {
+        $ionicScrollDelegate.scrollBottom(true);
+      };
+
+      var letterHasMatch = {};
+
+      $scope.getContacts = function() {
+        letterHasMatch = {};
+        //Filter contacts by $scope.search.
+        //Additionally, filter letters so that they only show if there
+        //is one or more matching contact
+        return contacts.filter(function(item) {
+          var itemDoesMatch = !$scope.search || item.isLetter ||
+            item.first_name.toLowerCase().indexOf($scope.search.toLowerCase()) > -1 ||
+            item.last_name.toLowerCase().indexOf($scope.search.toLowerCase()) > -1;
+
+          //Mark this person's last name letter as 'has a match'
+          if (!item.isLetter && itemDoesMatch) {
+            var letter = item.last_name.charAt(0).toUpperCase();
+            letterHasMatch[letter] = true;
+          }
+
+          return itemDoesMatch;
+        }).filter(function(item) {
+          //Finally, re-filter all of the letters and take out ones that don't
+          //have a match
+          if (item.isLetter && !letterHasMatch[item.letter]) {
+            return false;
+          }
+          return true;
+        });
+      };
+
+      $scope.clearSearch = function() {
+        $scope.search = '';
+      };
+    });
+</script>
+
+<!-- according list -->
+<ion-content>
+  <ion-list>
+    <div ng-repeat="group in groups">
+      <ion-item
+        class="item-stable"
+        ng-click="toggleGroup(group)"
+        ng-class="{active: isGroupShown(group)}">
+        <i class="icon"
+          ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+        &nbsp; Group {{group.name}}
+      </ion-item>
+
+      <ion-item class="item-accordion"
+        ng-repeat="item in group.items"
+        ng-show="isGroupShown(group)">{{item}}
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
+<script type="text/javascript">
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+</script>
+
+<!-- actionsheet -->
+<script type="text/javascript">
+    $ionicActionSheet.show({
+      titleText: 'ActionSheet Example',
+      buttons: [
+        { text: 'Share <i class="icon ion-share"></i>' },
+        { text: 'Move <i class="icon ion-arrow-move"></i>' },
+      ],
+      destructiveText: 'Delete',
+      cancelText: 'Cancel',
+
+      cancel: function() {
+        console.log('CANCELLED');
+      },
+      buttonClicked: function(index) {
+        console.log('BUTTON CLICKED', index);
+        return true;
+      },
+
+      destructiveButtonClicked: function() {
+        console.log('DESTRUCT');
+        return true;
+      }
+    });
+</script>
+
+<!-- Location & Map -->
+<script type="text/javascript">
+    function initialize() {
+      var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
+
+      var mapOptions = {
+        center: myLatlng,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("map"),
+          mapOptions);
+
+      //Marker + infowindow + angularjs compiled ng-click
+      var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
+      var compiled = $compile(contentString)($scope);
+
+      var infowindow = new google.maps.InfoWindow({
+        content: compiled[0]
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Uluru (Ayers Rock)'
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
+
+      $scope.map = map;
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    $scope.centerOnMe = function() {
+      if(!$scope.map) {
+        return;
+      }
+
+      $scope.loading = $ionicLoading.show({
+        content: 'Getting current location...',
+        showBackdrop: false
+      });
+
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        $scope.loading.hide();
+      }, function(error) {
+        alert('Unable to get location: ' + error.message);
+      });
+    };
+
+    $scope.clickTest = function() {
+      alert('Example of infowindow with ng-click')
+    };
+</script>
