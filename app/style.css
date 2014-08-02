@@ -22,16 +22,45 @@ body{
 
 /*通用按钮    */
 .onefun-button{
+    display: inline-block;
+    text-decoration: none;
     background-color: #6fc4c7;
     color: #ffffff;
     border:none;
     border-radius: 40px;
 }
+.onefun-button:hover{
+    background-color: #6fc4c7;
+    color: #ffffff;
+}
 .onefun-button-useless{
+    display: inline-block;
+    text-decoration: none;
+    display: inline-block;
     background-color: #a0a0a0;
     color: #ffffff;
     border:none;
     border-radius: 40px;
+}
+.onefun-button-useless:hover{
+    background-color: #a0a0a0;
+    color: #ffffff;
+}
+.onefun-button-red{
+    display: inline-block;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #e97462;
+    color: #ffffff;
+    border:none;
+    border-radius: 40px;
+}
+.onefun-button-red:hover{
+    background-color: #e97462;
+    color: #ffffff;
+}
+.onefun-button:active,.onefun-button-useless:active,.onefun-button-red:active{
+    box-shadow: inset 3px 3px 3px rgba(0,0,0,.3);
 }
 
 /*返回按钮*/
@@ -73,8 +102,8 @@ body{
     padding:50px 0px;
 }
 .home_getnum .home_logo .logo{
-    height:64px;
-    width:64px;
+    height:72px;
+    width:72px;
 }
 .home_getnum .home_content_item{
     display: block;
@@ -201,7 +230,7 @@ body{
     line-height: 24px;
 }
 .home_getinfo .tip .tip_show_text{
-    color:#4a87ee;
+    color:#e5a84f;
     line-height: 24px;
 }
 .home_getinfo .tip .tip_show_textarea{
@@ -290,50 +319,178 @@ body{
 }
 
 
-.chat-status{
-  width: 100%;
+
+/*信息提交页 order_submit*/
+.order_submit .list-inset{
+    background: none;
+    margin-bottom: 5px;
 }
-.chat-input input{
-  display: inline-block;
-  width: 80%;
+.order_submit  .list-inset .item{
+    border:none;
+    background: #6fc4c8;
+    border-radius:40px;
+    margin-bottom: 10px;
+    padding:5px 15px;
+    color: #ffffff;
+}
+.order_submit  .list-inset .item input::-webkit-input-placeholder {
+    color: #ffffff;
+}
+.order_submit  .list-inset .item input{
+    color: #ffffff;
+}
+.order_submit  .list-inset .item:first-child{
+    border-top-left-radius:40px;
+    border-top-right-radius:40px;
+}
+.order_submit  .list-inset .item-toggle{
+    line-height: 36px;
+}
+.order_submit  .list-inset .track{
+    border:3px solid #ffffff;
+}
+.order_submit  .list-inset .toggle input:checked+.track{
+    border-color: #ffffff;
+    background-color: #ffcc33;
+}
+.order_submit  .toggle .handle{
+    background: #feffd5;
+}
+.order_submit  .toggle input:checked+.track .handle{
+    background: #feffd5;
+}
+.order_submit .padding{
+    text-align: center;
+}
+.order_submit .padding .button{
+    width:120px;
+    margin: 0 auto;
+}
+.order_submit .tip{
+}
+.order_submit .tip .tip_warn{
+    text-align: left;
+}
+.order_submit .tip_show {
+    margin-bottom: 20px;
+}
+.order_submit .tip_show .tip_show_textarea{
+    border-radius: 20px;
 }
 
-/*聊天页*/
-.discussion{
+/*订单信息页 order_info*/
+.order_info{
+
+}
+.order_info .home_numinfo_dt,
+.order_info .home_numinfo_dd{
+    border-radius: 20px;
+    background: #6fc4c8;
+}
+
+/*聊天页 argue_detail*/
+.argue_detail{
     background: none;
 }
 /*顶部信息*/
-.chat-status{
+.argue_detail .chat-status{
     border-bottom: 1px solid #cde4dc;
 }
-.chat-status td{
+.argue_detail .chat-status td{
     padding:5px 10px;
 }
-.chat-status .user{
+.argue_detail .chat-status .user{
     color: #e4a53e;
 }
-.chat-status .status {
+.argue_detail .chat-status .status {
     text-align: right;
 }
-.chat-status .status button{
-    width:60px;
+.argue_detail .chat-status .status button{
+    width:80px;
+}
+/*消息列表*/
+.argue_detail .discussion{
+    background: none;
+}
+.argue_detail .pane .scroll{
+    position: absolute;
+    width: 100%;
+    top:0px;
+    bottom:0px;
+}
+.argue_detail .pane .has-tabs{
+    bottom:0px;
+}
+.argue_detail .self .messages{
+    max-width: 200px;
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    background: #becd7c;
+    color: #333333;
+    float:right;
+}
+.argue_detail .self .avatar{
+    margin-left: 10px;
+    float:right;
+}
+.argue_detail .self .avatar:after{
+    border:8px solid #becd7c;
+    top:10px;
+    left:-10px;
+    border-right:none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow:none;
+}
+.argue_detail .other .messages{
+    max-width: 200px;
+    border: none;
+    box-shadow: none;
+    border-radius: 5px;
+    background: #71c4c9;
+    color: #333333;
+    float: left;
+}
+.argue_detail .other .avatar{
+    margin-right: 10px;
+    float:left;
+}
+.argue_detail .other .avatar:after{
+    border:8px solid #71c4c9;
+    top:10px;
+    right:-10px;
+    border-left:none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow:none;
 }
 /*输入信息*/
-.chat-input{
+
+.argue_detail .chat-input{
+    position: fixed;
     background: #ffcc33;
     padding:10px;
+    width: 100%;
+    bottom: 0px;
 }
-.chat-input .text{
+.argue_detail .chat-input .text{
     background: #feffd5;
     padding-left: 15px;
     border-radius: 40px;
 }
-.chat-input .send{
+.argue_detail .chat-input .send{
     border:none;
     background: none;
     height:40px;
 }
-
+.argue_detail .chat-status{
+  width: 100%;
+}
+.argue_detail .chat-input input{
+  display: inline-block;
+  width: 80%;
+}
 
 
 
