@@ -88,7 +88,7 @@ angular.module('ionicApp')
             }));
         }
     })
-    .controller('orderInfoCtrl', function($scope, $rootScope) {
+    .controller('orderInfoCtrl', function($scope, $rootScope, apiHelper, $state) {
         if (window._myselfOrder) {
             $rootScope.preOrderInfo = _myselfOrder;
         }
@@ -99,10 +99,17 @@ angular.module('ionicApp')
         // todo: $state.go('tabs.order-info');
 
         $scope.cancelOrder = function() {
-            // ajax cleanup
+            apiHelper('updateOrder', {
+                params: {
+                    status: 1,
+                    deviceId: _deviceId
+                }
+            }).then(function() {
+                // to where?!
+                $state.go('tabs.order');
+            });
         };
 
-        $scope.reSetting = function() {
-
-        };
+        // $scope.reSetting = function() {
+        // };
     })

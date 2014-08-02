@@ -64,6 +64,15 @@ angular.module('ionicApp')
                 buttonClicked: function(index) {
                     if (index === 0) {
                         // 上桌
+                        apiHelper('updateOrder', {
+                            params: {
+                                status: 2,
+                                deviceId: _deviceId
+                            }
+                        }).then(function() {
+                            // to where?! - clean item
+                            $state.reload();
+                        });
                     }
                     if (index === 1) {
                         window._stateParam = $rootScope._targetCustomer;
@@ -74,12 +83,21 @@ angular.module('ionicApp')
 
                 destructiveButtonClicked: function() {
                     console.log('DESTRUCT');
+                    // 上桌
+                    apiHelper('updateOrder', {
+                        params: {
+                            status: 1,
+                            deviceId: _deviceId
+                        }
+                    }).then(function() {
+                        // to where?! - clean item
+                        $state.reload();
+                    });
                     // $http
                     return true;
                 }
             });
         };
-        // 评论和详情 - baidu it?! commentList
     });
 
 angular.bootstrap(document, ['ionicApp']);

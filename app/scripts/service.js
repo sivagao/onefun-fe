@@ -10,6 +10,8 @@ angular.module('ionicApp')
             'getAvailableList': 'GET /preorder/list',
 
             'mergeOrder': 'POST /mergeorder',
-            'changeOrder': 'POST /changeorder'
+            'changeOrder': 'POST /changeorder',
+
+            'updateOrder': 'POST /updateorder'
         });
     });
