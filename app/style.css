@@ -366,6 +366,14 @@ body{
     display: block;
     color:#999999;
 }
+.tplist .tplist_ul .tplist_list .tp_content_c .intro{
+    display: block;
+    color:#e5a84f;
+}
+.tplist .tplist_ul .tplist_list .tp_content_c .detail{
+    display: block;
+    color:#999999;
+}
 .tplist .tplist_ul .tplist_list .tp_content_b{
     clear:both;
     color: #e5a84f;
@@ -686,4 +694,9 @@ body{
 .setting .setting_ul .setting_list_first .tp_content_b{
     border-color: #efefef;
     background-color: #ffffff;
+}
+
+/*管理员页面 manage_list*/
+.manage_list .tplist .tplist_ul .tplist_list .tp_content_c{
+    max-width: none;
 }
