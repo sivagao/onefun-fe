@@ -313,6 +313,13 @@ body{
     display: block;
     float:left;
 }
+.tplist .tplist_ul .tplist_list .tp_num_info,
+.tplist .tplist_ul .tplist_list .tp_num_code{
+    display: block;
+}
+.tplist .tplist_ul .tplist_list .tp_num_code{
+    color: #666666;
+}
 .tplist .tplist_ul .tplist_list .tp_content{
     display: block;
     float:right;
@@ -356,6 +363,9 @@ body{
 }
 .tplist .tplist_ul .tplist_list_first .tp_num{
     color:#ffffff;
+}
+.tplist .tplist_ul .tplist_list_first .tp_num_code{
+    color:#efefef;
 }
 .tplist .tplist_ul .tplist_list_first .tp_content_c .title{
     color: #ffffff
