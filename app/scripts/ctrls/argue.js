@@ -94,7 +94,7 @@ angular.module('ionicApp')
                 data: {
                     fromDeviceId: window._deviceId,
                     toDeviceId: $rootScope._arguePeople.deviceId,
-                    msg: $scope.$$childTail.chatText || 'fda'
+                    msg: $scope.$$childTail.chatText || '聊聊，我们来拼餐？'
                 }
             }));
             $scope.$$childTail.chatText = '';
@@ -134,11 +134,12 @@ angular.module('ionicApp')
                     fromDeviceId: window._deviceId,
                     toDeviceId: $rootScope._arguePeople.deviceId
                 }
-            }).then(function() {
-                var alertPopup = $ionicPopup.alert({
-                    title: '合并订单成功',
-                    template: '你们可以接着聊天！'
-                });
+            }).then(function(resp) {
+                $rootScope._mergeOrderInfo = {
+                    preOrderNum: resp,
+                    other: $rootScope._arguePeople
+                };
+                $state.go('tabs.argue-finish');
             }, function() {
                 // error handler
                 $ionicPopup.alert({
@@ -157,5 +158,5 @@ angular.module('ionicApp')
         };
     })
     .controller('argueFinishCtrl', function($scope, $rootScope) {
-
-    })
+        $scope.i = $rootScope._mergeOrderInfo;
+    });

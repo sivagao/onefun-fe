@@ -1,18 +1,21 @@
-      <ion-view title="预约成功" class="argue_finish">
-        <ion-content class="padding home_finish">
-          <h1 class="home_finishlogo">
-            拼桌成功！
-          </h1>
-          <div class="home_finishcontent">
-            <h2 class="content_num">您的排队号调整为：<b>1201</b></h2>
-            <div class="content_detail">
-              <h3 class="content_detail">对方信息：</h3>
-              <ul class="content_ul">
-                <li><span>称呼：<b>张筱雨</b></span></li>
-                <li><span>手机：<b>18888888888</b></span></li>
-              </ul>
-              <span class="content_tip">请尽快与对方取得联系哦~</span>
-            </div>
-          </div>
-        </ion-content>
-      </ion-nav-view>
+<ion-view title="预约成功" class="argue_finish">
+  <ion-content class="padding home_finish">
+    <h1 class="home_finishlogo">
+      拼桌成功！
+    </h1>
+    <div class="home_finishcontent">
+      <h2 class="content_num">您的排队号调整为：<b>{{i.preOrderNum||'111'}}</b></h2>
+      <div class="content_detail">
+        <h3 class="content_detail">对方信息：</h3>
+        <ul class="content_ul">
+          <li><span>称呼：<b>{{i.other.nickName}}</b></span></li>
+          <li><span>手机：<b>
+            <!-- trigger a real phone call -->
+            <a href="tel:{{i.phoneNum}}">{{i.phoneNum}}</a>
+          </b></span></li>
+        </ul>
+        <span class="content_tip">请尽快与对方取得联系哦~</span>
+      </div>
+    </div>
+  </ion-content>
+</ion-nav-view>
