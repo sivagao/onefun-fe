@@ -20,14 +20,6 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
 
         WebSocket.onopen(function() {
             console.log('connection');
-            WebSocket.send(JSON.stringify({
-                type: 'chat',
-                data: {
-                    fromDeviceId: window._deviceId,
-                    toDeviceId: 'abc-321',
-                    msg: 'fda' || $scope.chatText
-                }
-            }));
         });
 
         WebSocket.onmessage(function(event) {
