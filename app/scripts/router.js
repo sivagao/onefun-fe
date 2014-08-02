@@ -15,12 +15,21 @@ angular.module('ionicApp')
                     }
                 }
             })
-            .state('tabs.order-form', {
-                url: "/order-form",
+            .state('tabs.order-locationed', {
+                url: "/order-locationed",
                 views: {
                     'order-tab': {
-                        templateUrl: "order-form.html",
-                        controllder: 'orderFormCtrl'
+                        templateUrl: "order-locationed.html",
+                        controller: 'orderLocationCtrl'
+                    }
+                }
+            })
+            .state('tabs.order-form', {
+                url: "/order-form",
+                controllder: 'orderFormCtrl',
+                views: {
+                    'order-tab': {
+                        templateUrl: "order-form.html"
                     }
                 }
             })
@@ -66,6 +75,24 @@ angular.module('ionicApp')
                     'profile-tab': {
                         templateUrl: "profile-detail.html",
                         controllder: 'profileDetailCtrl'
+                    }
+                }
+            })
+            .state('tabs.manage-list', {
+                url: "/manage-list",
+                views: {
+                    'argue-tab': {
+                        templateUrl: "manage-list.html",
+                        controllder: 'manageListCtrl'
+                    }
+                }
+            })
+            .state('tabs.manage-item', {
+                url: "/manage-item",
+                views: {
+                    'argue-tab': {
+                        templateUrl: "manage-item.html",
+                        controllder: 'manageItemCtrl'
                     }
                 }
             });

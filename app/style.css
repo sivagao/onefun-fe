@@ -1,0 +1,85 @@
+.home_getnum .home_logo{
+    text-align: center;
+    padding:50px 0px;
+}
+.home_getnum .home_logo .logo{
+    height:64px;
+    width:64px;
+}
+.home_getnum .home_content_item{
+    display: block;
+    padding:10px 0px;
+    text-align: center;
+    color: #666666;
+}
+.home_getnum .home_button{
+    padding:0 10px;
+}
+
+
+.home_getlocal .home_shoplogo{
+    text-align: center;
+    padding:50px 0px;
+}
+.home_getlocal .home_shoplogo .logo{
+    height:64px;
+    width:64px;
+}
+.home_getlocal .home_local .icon{
+    font-size: 30px;
+}
+.home_getlocal .home_local .home_local_info{
+    position: relative;
+    top:-6px;
+    line-height: 30px;
+}
+.home_getlocal .home_content_item{
+    display: block;
+    padding:10px 0px;
+    text-align: center;
+    color: #666666;
+}
+.home_getlocal .home_button{
+    padding:0 10px;
+}
+
+
+.home_getinfo{
+
+}
+.home_getinfo .item-choice{
+    position: relative;
+    padding:0px;
+}
+.home_getinfo .item-choice-label{
+    display: inline-block;
+    color: #999999;
+    font-size: 14px;
+    line-height: 45px;
+    padding-left: 10px;
+}
+.home_getinfo .item-choice-toggle{
+    position: absolute;
+    margin:0px;
+    right:0px;
+}
+.home_getinfo .tip{
+    padding:0 10px;
+}
+.home_getinfo .tip .icon{
+    font-size: 16px;
+}
+.home_getinfo .tip .tip_warn_text{
+    color:#ef4e3a;
+    line-height: 24px;
+}
+.home_getinfo .tip .tip_show_text{
+    color:#4a87ee;
+    line-height: 24px;
+}
+.home_getinfo .tip .tip_show_textarea{
+    resize:none;
+    padding: 10px;
+    border:1px solid #f7f7f7;
+    border-radius: 3px;
+}
