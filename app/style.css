@@ -26,7 +26,8 @@ body{
     height: 24px;
     line-height: 24px;
 }
-.onefun-button{
+.onefun-button,
+.popup-buttons .button{
     display: inline-block;
     text-decoration: none;
     background-color: #6fc4c7;
@@ -34,7 +35,13 @@ body{
     border:none;
     border-radius: 40px;
 }
-.onefun-button:hover{
+.onefun-button:hover,
+.popup-buttons .button:hover{
+    background-color: #6fc4c7;
+    color: #ffffff;
+}
+.onefun-button:active,
+.popup-buttons .button:active{
     background-color: #6fc4c7;
     color: #ffffff;
 }
@@ -90,7 +97,7 @@ body{
     background-color: #ffcc33;
     color: #ffffff;
 }
-.onefun-button:active,.onefun-button-useless:active,.onefun-button-red:active,.onefun-button-green:active,.onefun-button-yellow:active{
+.onefun-button:active,.popup-buttons .button:active,.onefun-button-useless:active,.onefun-button-red:active,.onefun-button-green:active,.onefun-button-yellow:active{
     box-shadow: inset 3px 3px 3px rgba(0,0,0,.3);
 }
 
@@ -333,14 +340,19 @@ body{
 }
 .tplist .tplist_ul .tplist_list .tp_content_r{
     float:right;
+    width: 100px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_r .button{
     width:80px;
+    margin-bottom: 5px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_c .title{
     color: #666666;
     font-size: 14px;
     margin-bottom: 5px;
+}
+.tplist .tplist_ul .tplist_list .tp_content_c .title .button{
+    padding:0 10px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_c .title .title_button{
     display: inline-block;
@@ -408,13 +420,16 @@ body{
 .order_submit  .list-inset .track{
     border:3px solid #ffffff;
 }
-.order_submit  .list-inset .toggle input:checked+.track{
+.order_info .toggle input:checked+.track,
+.order_submit .toggle input:checked+.track{
     border-color: #ffffff;
     background-color: #ffcc33;
 }
+.order_info  .toggle .handle,
 .order_submit  .toggle .handle{
     background: #feffd5;
 }
+.order_info  .toggle input:checked+.track .handle,
 .order_submit  .toggle input:checked+.track .handle{
     background: #feffd5;
 }
