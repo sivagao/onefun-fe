@@ -7,8 +7,11 @@
     <ul class="tplist_ul">
       <li class="tplist_list tplist_list_first clearfix"
         ng-repeat="i in availableList|filter: {deviceId: _deviceId}">
-        <span class="tp_num">{{i.tableCapacity}}缺
+        <div class="tp_num">
+          <span class="tp_num_info">{{i.tableCapacity}}缺
           <b>{{i|inferLeftCount}}</b></span>
+          <span class="tp_num_code">123</span>
+        </div>
         <div class="tp_content clearfix">
           <div class="tp_content_c">
             <h3 class="title">
@@ -23,16 +26,19 @@
             <button class="button onefun-button-green"
               ng-click="goSelfSetting()">设置</button>
           </div>
-          <div class="tp_content_b"><i class="icon ion-chatbox-working"></i>
-            {{i.introText||'还没设置....'}}
+          <div class="tp_content_b">
+            “{{i.introText||'还没设置....'}}”
           </div>
         </div>
       </li>
 
       <li class="tplist_list clearfix"
         ng-repeat="i in availableList|filter: {deviceId: '!'+_deviceId}">
-        <span class="tp_num">{{i.tableCapacity}}缺
+        <div class="tp_num">
+          <span class="tp_num_info">{{i.tableCapacity}}缺
           <b>{{i|inferLeftCount}}</b></span>
+          <span class="tp_num_code">123</span>
+        </div>
         <div class="tp_content clearfix">
           <div class="tp_content_c">
             <h3 class="title">
@@ -49,8 +55,8 @@
               ng-click="askJumpQueue(i)"
               ng-show="canJumpQueeu(i)">插队</button>
           </div>
-          <div class="tp_content_b"><i class="icon ion-chatbox-working"></i>
-            {{i.introText}}
+          <div class="tp_content_b">
+            “{{i.introText}}”
           </div>
         </div>
       </li>
