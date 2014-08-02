@@ -1,26 +1,6 @@
 angular.module('ionicApp')
     .factory('apiHelper', ['$http',
         function apiHelper($http) {
-            /*
-            Todo
-            1. config.busy 的支持（gloabl, btn, partial etc）
-            2. to config api version
-        */
-            /*
-            way to use the api:
-            每个 biz module 有个 endpoint api map
-
-            var apiMap = {
-                delBlackList: 'GET /api/app/:app_id/blacklist/delete',
-                fetchStat: 'GET /api/adformat/statement/:id'
-            };
-
-            apiHelper.config(apiMap);
-
-            apiHelper('delBlackList', app_id, config).then(function() {
-
-            });
-        */
             var _maps = {},
                 _urlPrfix = '/api';
 
@@ -116,7 +96,8 @@ angular.module('ionicApp')
                     if (response.config.method === 'POST') {
                         $notice.success('操作成功！');
                     }
-                    return response.data.data;
+                    // return response.data.data;
+                    return response.data;
                 }
                 return response;
             }

@@ -43,7 +43,7 @@
           <img class="logo" src="logo.png" />
         </h1>
         <div class="home_content">
-          <span class="home_content_item home_local"><i class="icon ion-looping"></i>正在定位</span>
+          <span class="home_content_item home_local"><i class="icon ion-loading-a"></i>正在定位</span>
           <span class="home_content_item home_status">您还未取号</span>
           <span class="home_content_item home_button">
             <button class="button button-light">取号</button>
@@ -52,8 +52,64 @@
       </div>
     </script>
 
+    <script type="text/ng-template" id="order-locationed.html">
+      <div class="home_getlocal">
+        <h1 class="home_shoplogo">
+          <img class="logo" src="shop_logo.png" />
+        </h1>
+        <div class="home_content">
+          <span class="home_content_item home_local">
+              <i class="icon ion-location"></i>
+              <b class="home_local_info">您现在的位置：海底捞金泉广场店</b>
+          </span>
+          <span class="home_content_item home_detail">现在共有<b>18</b>组，共计<b>30</b>人在排队</span>
+          <span class="home_content_item home_status">您还未取号…</span>
+          <span class="home_content_item home_button">
+            <a class="button button-block button-positive"
+              ui-sref="tabs.order-form">取号</a>
+          </span>
+        </div>
+      </div>
+    </script>
+
     <script type="text/ng-template" id="order-form.html">
-      order-form
+      <div class="home_getinfo" ng-controller="orderFormCtrl">
+        <div class="list list-inset" ng-init="info={}">
+          <label class="item item-input">
+            <input type="number"
+              placeholder="人数" ng-model="info.customerNum">
+          </label>
+          <label class="item item-input">
+            <input type="text"
+              placeholder="称呼" ng-model="info.nickName">
+          </label>
+          <label class="item item-input">
+            <input type="text"
+              placeholder="手机号" ng-model="info.phoneNum">
+          </label>
+          <ion-toggle ng-init="info.isAccept=true"
+            ng-model="info.isAccept"
+            ng-checked="info.isAccept">
+            是否接受拼桌
+          </ion-toggle>
+
+        </div>
+        <div class="tip">
+          <div class="tip_warn" ng-hide="info.isAccept">
+            <span class="tip_warn_text">
+              <b>提示：</b>接受拼桌不影响正常排队，还有机会快速入座，结识新朋友哦~</div>
+            </span>
+          <div class="tip_show" ng-show="info.isAccept">
+            <span class="tip_show_text"><i class="icon ion-coffee"></i>自动为您分配：<b>4人桌</b></span>
+            <textarea class="tip_show_textarea"
+              placeholder="一句话自我介绍" ng-model="info.introText"></textarea>
+          </div>
+        </div>
+        <div class="padding">
+          <button class="button button-block button-positive"
+            ng-click="submitOrder()">取号</button>
+        </div>
+      </div>
     </script>
 
     <script type="text/ng-template" id="order-info.html">

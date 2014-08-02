@@ -1,5 +1,5 @@
 angular.module('ionicApp')
-    .controller('orderLocationCtrl', function($scope, $rootScope, $http, $ionicLoading, apiHelper) {
+    .controller('orderLocationCtrl', function($scope, $rootScope, $http, $ionicLoading, apiHelper, $timeout, $state) {
 
         $scope.loading = $ionicLoading.show({
             content: '正在定位请稍后...',
@@ -10,9 +10,13 @@ angular.module('ionicApp')
             console.log(resp);
         });
 
+        $timeout(function() {
+            $state.go('tabs.order-locationed');
+        }, 1000);
+
         // Todo with show not in location page
 
-        getLocation();
+        // getLocation();
 
         function getLocation() {
             navigator.geolocation.getCurrentPosition(function(pos) {
@@ -30,18 +34,33 @@ angular.module('ionicApp')
 
         }
     })
-    .controller('orderFormCtrl', function($scope, $rootScope, $http) {
+    .controller('orderFormCtrl', function($scope, $rootScope, $ionicPopup, $state, apiHelper) {
 
         $scope.submitOrder = function() {
-            $http.post('', {
+            // form validator
+            $scope.info.deviceId = window._deviceId;
+            apiHelper('postPreOrderInfo', {
+                data: $scope.info
+            })['finally'](function(resp) {
+                showAlert();
+            });
+        };
 
-            }).then(function() {
-
+        function showAlert() {
+            var alertPopup = $ionicPopup.alert({
+                title: '预约成功！',
+                template: '您可以到拼桌页面，查找附件的人，一起来.'
+            });
+            alertPopup.then(function(res) {
+                $state.go('tabs.order-info');
             });
         }
     })
     .controller('orderInfoCtrl', function($scope, $rootScope) {
         console.log('orderInfoCtrl');
+
+        // todo: $state.go('tabs.order-info');
+
         $scope.cancelOrder = function() {
 
         };

@@ -15,6 +15,15 @@ angular.module('ionicApp')
                     }
                 }
             })
+            .state('tabs.order-locationed', {
+                url: "/order-locationed",
+                views: {
+                    'order-tab': {
+                        templateUrl: "order-locationed.html",
+                        controller: 'orderLocationCtrl'
+                    }
+                }
+            })
             .state('tabs.order-form', {
                 url: "/order-form",
                 controllder: 'orderFormCtrl',
