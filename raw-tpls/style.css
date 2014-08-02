@@ -175,7 +175,7 @@
 	display: block;
 	float:right;
 	width:80%;
-	min-width: 300px;
+	min-width: 240px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_c{
 	float:left;
@@ -231,13 +231,24 @@
 	display: block;
 	float:left;
 }
-.setting .setting_ul .setting_list .tp_num b{
+.setting .setting_ul .setting_list .tp_num em{
+	position: relative;
+	top:15px;
+	display: inline-block;
+	height:18px;
+	min-width: 18px;
+	line-height: 16px;
+	text-align: center;
+	color: #ffffff;
+	border:1px solid #cc2311;
+	background-color: #ef4e3a;
+	border-radius: 40px;
 }
 .setting .setting_ul .setting_list .tp_content{
 	display: block;
 	float:right;
 	width:80%;
-	min-width: 300px;
+	min-width: 240px;
 }
 .setting .setting_ul .setting_list .tp_content_c{
 	float:left;
@@ -264,6 +275,9 @@
 .setting .setting_ul .setting_list .tp_content_c .info{
 	display: block;
 	color:#999999;
+}
+.setting .setting_ul .setting_list .tp_content_c .icon {
+	margin-right: 3px;
 }
 .setting .setting_ul .setting_list .tp_content_b{
 	clear:both;
