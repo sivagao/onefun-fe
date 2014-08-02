@@ -1,3 +1,73 @@
+body{
+}
+/*总体*/
+.pane, .view{
+    background: url(img/bg.png) ;
+}
+.bar.bar-positive{
+    background: none;
+}
+.bar.bar-positive{
+    background: rgba(256,256,256,.3);
+}
+.bar.bar-positive .title{
+    width:auto;
+    color: #e5a43e;
+    background: url(img/title.png) no-repeat right 8px;
+    background-size: 24px;
+}
+.padding{
+    padding: 0px;
+}
+
+/*通用按钮    */
+.onefun-button{
+    background-color: #6fc4c7;
+    color: #ffffff;
+    border:none;
+    border-radius: 40px;
+}
+.onefun-button-useless{
+    background-color: #a0a0a0;
+    color: #ffffff;
+    border:none;
+    border-radius: 40px;
+}
+
+/*返回按钮*/
+.nav-title-slide-ios7:not(.no-animation) .button.back-button{
+    color:#e5a43e;
+}
+
+/*导航*/
+.tabs-positive .tabs{
+    background: rgba(254,255,213,.5);
+    padding: 0px;
+}
+.tabs-positive .tabs .tab-title{
+    color: #333335;
+}
+.tab-item.tab-item-active{
+    background: #ffcc33;
+}
+.tab-item.icon{
+    color: #e5a43e
+}
+.tabs-positive .tabs .icon{
+    color: #e5a43e;
+}
+.tab-item.tab-item-active .icon{
+    color: #ffffff;
+}
+
+.home_button .button{
+    background-color: #6fc4c7;
+    color: #ffffff;
+    border:none;
+    border-radius: 40px;
+}
+
+
 .home_getnum .home_logo{
     text-align: center;
     padding:50px 0px;
@@ -15,33 +85,45 @@
 .home_getnum .home_button{
     padding:0 10px;
 }
+.home_getnum .home_button .button{
+    min-width: 120px;
+}
 
 
 
 .home_getlocal .home_shoplogo{
     text-align: center;
-    padding:50px 0px;
+    padding:20px 0px;
 }
 .home_getlocal .home_shoplogo .logo{
-    height:64px;
-    width:64px;
+    height:128px;
+    width:128px;
+    border-radius: 64px;
+    box-shadow: inset 3px 3px 3px #666666;
 }
 .home_getlocal .home_local .icon{
-    font-size: 30px;
+    font-size: 36px;
+    color:#ffcc32;
 }
 .home_getlocal .home_local .home_local_info{
     position: relative;
     top:-6px;
     line-height: 30px;
+    font-size: 16px;
+    color: #de381e;
 }
 .home_getlocal .home_content_item{
     display: block;
-    padding:10px 0px;
     text-align: center;
     color: #666666;
 }
 .home_getlocal .home_button{
     padding:0 10px;
+    margin-top:40px;
+    font-weight: bold;
+}
+.home_getlocal .home_button .button{
+    min-width: 120px;
 }
 .home_getlocal .home_numinfo{
     padding:0 10px;
@@ -214,4 +296,40 @@
 .chat-input input{
   display: inline-block;
   width: 80%;
+}
+
+/*聊天页*/
+.discussion{
+    background: none;
+}
+/*顶部信息*/
+.chat-status{
+    border-bottom: 1px solid #cde4dc;
+}
+.chat-status td{
+    padding:5px 10px;
+}
+.chat-status .user{
+    color: #e4a53e;
+}
+.chat-status .status {
+    text-align: right;
+}
+.chat-status .status button{
+    width:60px;
+}
+/*输入信息*/
+.chat-input{
+    background: #ffcc33;
+    padding:10px;
+}
+.chat-input .text{
+    background: #feffd5;
+    padding-left: 15px;
+    border-radius: 40px;
+}
+.chat-input .send{
+    border:none;
+    background: none;
+    height:40px;
 }

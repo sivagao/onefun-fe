@@ -2,14 +2,13 @@
   <ion-content class="padding">
     <table class="chat-status">
       <tr>
-         <td>对方：张先生 共 三人</td>
-         <td>已同意</td>
+         <td class="user">对方：张先生 共 三人</td>
+         <td class="status"><button class="onefun-button-useless">已同意</button></td>
       </tr>
       <tr>
-         <td>我：</td>
-         <td>等待同意：</td>
-         <td>
-           <button class="button button-light">同意</button>
+         <td class="user">我：</td>
+         <td class="status">
+           <button class="onefun-button">同意</button>
          </td>
       </tr>
     </table>
@@ -45,8 +44,8 @@
       </li>
     </ol>
     <div class="chat-input">
-      <input type="text" placeholder="输入内容" ng-model="chatText">
-      <button class="button button-light" ng-click="postMsg()">发送</button>
+      <input type="text" placeholder="输入内容" ng-model="chatText" class="text">
+      <button class="send" ng-click="postMsg()">发送</button>
     </div>
   </ion-content>
 </ion-nav-view>
