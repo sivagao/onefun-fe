@@ -437,6 +437,50 @@ body{
     background: #6fc4c8;
 }
 
+/*预约成功页 argue_finish*/
+.argue_finish{
+
+}
+.argue_finish .home_finishlogo{
+    width:108px;
+    height: 108px;
+    margin: 20px auto;
+    background: url(img/finish_bg.png) 0px 0px;
+    background-size: 108px 108px;
+
+    font-size: 20px;
+    color: #df391f;
+    line-height: 108px;
+    text-align: center;
+}
+.argue_finish .home_finishcontent{
+    padding:20px;
+}
+.argue_finish .home_finishcontent .content_num{
+    font-size: 16px;
+    color: #333333;
+}
+.argue_finish .home_finishcontent .content_num b{
+    font-size: 24px;
+    color:#de381e;
+}
+.argue_finish .home_finishcontent .content_detail{
+    font-size: 16px;
+    color: #333333;
+}
+.argue_finish .home_finishcontent .content_ul{
+    font-size: 16px;
+    color: #666666;
+}
+.argue_finish .home_finishcontent .content_ul b{
+    font-size: 16px;
+    color: #6ec3c6;
+}
+.argue_finish .home_finishcontent .content_tip{
+    display: block;
+    margin-top: 20px;
+    color: #e5a43e;
+}
 /*聊天页 argue_detail*/
 .argue_detail{
     background: none;
