@@ -9,7 +9,6 @@ angular.module('ionicApp')
             init();
         }
 
-
         $scope.goArgueDetail = function(who) {
             $rootScope._arguePeople = who;
             $state.go('tabs.argue-detail');
@@ -34,8 +33,18 @@ angular.module('ionicApp')
             });
         }
     })
-    .controller('manageListCtrl', function($scope, $ionicActionSheet, $state, $rootScope) {
+    .controller('manageListCtrl', function($scope, $ionicActionSheet, $state, $rootScope, apiHelper) {
         console.log('manageListCtrl');
+
+        $rootScope.getResturant();
+
+        apiHelper('getAvailableList', {
+            params: {
+                type: 'all'
+            }
+        }).then(function(resp) {
+            $scope.allOrder = resp;
+        });
         $scope.showActions = function(targetCustomer) {
             $rootScope._targetCustomer = $rootScope.targetCustomer
             $ionicActionSheet.show({

@@ -19,6 +19,7 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
                 $rootScope.loading && $rootScope.loading.hide();
                 $rootScope.resturantInfo = resp;
                 window._availableTableTypes = _.uniq(_.pluck(resp.tables, 'capacity'));
+                $rootScope._availableTableTypes = window._availableTableTypes;
             });
         };
 
