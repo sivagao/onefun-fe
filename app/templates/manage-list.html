@@ -1,5 +1,15 @@
 <ion-view title="管理界面" ng-controller="manageListCtrl" class="manage_list">
   <ion-content class="padding tablepooling tplist">
+    <nav class="tplist_nav">
+      <h3 class="tplist_nav_title"></h3>
+      <ul class="tplist_nav_ul clearfix">
+        <li><button class="button onefun-button-green">所有</button></li>
+        <li><button class="button onefun-button-green">2人桌</button></li>
+        <li><button class="button onefun-button">4人桌</button></li>
+        <li><button class="button onefun-button-green">6人桌</button></li>
+        <li><button class="button onefun-button-green">8人桌</button></li>
+      </ul>
+    </nav>
     <ul class="tplist_ul">
       <li class="tplist_list clearfix"
         ng-repeat="i in [1,2,3]" ng-click="showActions(i)">
