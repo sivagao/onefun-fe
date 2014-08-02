@@ -129,3 +129,8 @@
     opacity: 0.5;
   }
 }
+
+.tabs-positive>.tabs .tab-item .badge, .tabs.tabs-positive .tab-item .badge {
+  background-color: red;
+  color: #fff;
+}

@@ -2,7 +2,9 @@
   <ion-content class="chatpanel padding">
     <table class="chat-status">
       <tr>
-         <td class="user">对方：张先生 共 三人</td>
+         <td class="user">
+          对方：{{_arguePeople.nickName}} 共 {{_arguePeople.customerNum}} 人
+        </td>
          <td class="status">
           <button class="onefun-button-useless">{{agree.other?'已经统一':'未同意'}}</button>
         </td>

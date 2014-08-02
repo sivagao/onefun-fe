@@ -1,6 +1,38 @@
 angular.module('ionicApp')
-    .controller('profileDetailCtrl', function($scope, $rootScope) {
-        // todo
+    .controller('profileDetailCtrl', function($scope, $rootScope, apiHelper, $state) {
+        if (!$rootScope.availableList) {
+            apiHelper('getAvailableList').then(function(resp) {
+                $rootScope.availableList = resp;
+                init();
+            });
+        } else {
+            init();
+        }
+
+
+        $scope.goArgueDetail = function(who) {
+            $rootScope._arguePeople = who;
+            $state.go('tabs.argue-detail');
+        };
+
+        function findFromOrder(id) {
+            return _.filter($rootScope.availableList, function(item) {
+                if (item.deviceId === id) {
+                    return true
+                }
+                return false;
+            })[0];
+        }
+
+        function init() {
+            $scope.unreadChats = _.map($rootScope._unreadChats, function(i) {
+                return {
+                    from: findFromOrder(i.fromDeviceId),
+                    timestamp: i.timestamp,
+                    msg: i.msg
+                };
+            });
+        }
     })
     .controller('manageListCtrl', function($scope, $ionicActionSheet, $state) {
         console.log('manageListCtrl');

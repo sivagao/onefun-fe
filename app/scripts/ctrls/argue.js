@@ -62,54 +62,13 @@ angular.module('ionicApp')
 
         apiHelper('getAvailableList').then(function(resp) {
             $scope.availableList = resp;
+            $rootScope.availableList = resp;
             $scope.myselfOrder = _.filter(resp, function(i) {
                 if (i.deviceId === window._deviceId) {
                     return true;
                 }
                 return false;
             })[0];
-        });
-
-        $scope.$on('jump.response', function(xx, data) {
-            var alertPopup = $ionicPopup.alert({
-                title: '恭喜',
-                template: '您的换位请求已经被答应'
-            });
-            $timeout(function() {
-                $state.reload();
-            }, 1000);
-        });
-
-        $scope.$on('jump.request', function(xx, data) {
-            var confirmPopup = $ionicPopup.confirm({
-                title: '换位请求',
-                template: _.template('<%= nickName %>(排位号：<%= preOrderNum %>)，花<%= money %>元，请求和您换位置，你同意吗？', data)
-            });
-            confirmPopup.then(function(res) {
-                if (res) {
-                    WebSocket.send(JSON.stringify({
-                        type: 'jump.response',
-                        data: {
-                            toDeviceId: data.fromDeviceId
-                        }
-                    }));
-                    apiHelper('changeOrder', {
-                        params: {
-                            fromDeviceId: datafromDeviceId,
-                            toDeviceId: data.toDeviceId
-                        }
-                    }).then(function() {
-                        // refresh?!
-                        // confirmPopup close
-                        $timeout(function() {
-                            $state.reload();
-                        }, 1000);
-                    });
-                    console.log('You are sure');
-                } else {
-                    console.log('You are not sure');
-                }
-            });
         });
     })
     .controller('argueDetailCtrl', function($scope, $rootScope, WebSocket, $timeout, $ionicPopup, apiHelper) {
