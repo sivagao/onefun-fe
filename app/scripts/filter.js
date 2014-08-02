@@ -1,6 +1,9 @@
 angular.module('ionicApp')
     .filter('hostImg', function() {
         return function(val) {
+            if (!val) {
+                return 'logo.png';
+            }
             return window._APIHOST + '/' + val;
         }
     }).filter('inferLeftCount', function() {

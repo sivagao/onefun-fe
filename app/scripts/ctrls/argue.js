@@ -1,5 +1,5 @@
 angular.module('ionicApp')
-    .controller('argueListCtrl', function($scope, $rootScope, $state, apiHelper) {
+    .controller('argueListCtrl', function($scope, $rootScope, $state, apiHelper, WebSocket, $ionicPopup, $timeout) {
 
         // refresh, goOrderForm, goArgueDetail
         // getAvaibleList[with my special item]
@@ -14,8 +14,101 @@ angular.module('ionicApp')
             $state.go('tabs.order-info');
         };
 
+        $scope.askJumpQueue = function(other) {
+            var myPopup = $ionicPopup.show({
+                template: '<input type="number" ng-model="$parent.queueMoney">',
+                title: '申请换号',
+                subTitle: 'Please use normal things',
+                scope: $scope,
+                buttons: [{
+                    text: 'Cancel'
+                }, {
+                    text: '<b>确定</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        if (!$scope.queueMoney) {
+                            //don't allow the user to close unless he enters wifi password
+                            e.preventDefault();
+                        } else {
+                            return $scope.sendJumpCmd($scope.queueMoney, other.deviceId);
+                        }
+                    }
+                }, ]
+            });
+        };
+
+        $scope.sendJumpCmd = function(money, deviceId) {
+            WebSocket.send(JSON.stringify({
+                type: 'jump.request',
+                data: {
+                    money: money,
+                    nickName: $scope.myselfOrder.nickName,
+                    preOrderNum: $scope.myselfOrder.preOrderNum,
+                    fromDeviceId: window._deviceId,
+                    toDeviceId: deviceId
+                }
+            }))
+        };
+
+        $scope.canJumpQueeu = function(other) {
+            if ($scope.myselfOrder.preOrderNum > other.preOrderNum) {
+                if ($scope.myselfOrder.tableCapacity === other.tableCapacity) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
         apiHelper('getAvailableList').then(function(resp) {
             $scope.availableList = resp;
+            $scope.myselfOrder = _.filter(resp, function(i) {
+                if (i.deviceId === window._deviceId) {
+                    return true;
+                }
+                return false;
+            })[0];
+        });
+
+        $scope.$on('jump.response', function(xx, data) {
+            var alertPopup = $ionicPopup.alert({
+                title: '恭喜',
+                template: '您的换位请求已经被答应'
+            });
+            $timeout(function() {
+                $state.reload();
+            }, 1000);
+        });
+
+        $scope.$on('jump.request', function(xx, data) {
+            var confirmPopup = $ionicPopup.confirm({
+                title: '换位请求',
+                template: _.template('<%= nickName %>(排位号：<%= preOrderNum %>)，花<%= money %>元，请求和您换位置，你同意吗？', data)
+            });
+            confirmPopup.then(function(res) {
+                if (res) {
+                    WebSocket.send(JSON.stringify({
+                        type: 'jump.response',
+                        data: {
+                            toDeviceId: data.fromDeviceId
+                        }
+                    }));
+                    apiHelper('changeOrder', {
+                        params: {
+                            fromDeviceId: datafromDeviceId,
+                            toDeviceId: data.toDeviceId
+                        }
+                    }).then(function() {
+                        // refresh?!
+                        // confirmPopup close
+                        $timeout(function() {
+                            $state.reload();
+                        }, 1000);
+                    });
+                    console.log('You are sure');
+                } else {
+                    console.log('You are not sure');
+                }
+            });
         });
     })
     .controller('argueDetailCtrl', function($scope, $rootScope, WebSocket, $timeout, $ionicPopup, apiHelper) {

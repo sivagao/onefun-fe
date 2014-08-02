@@ -38,6 +38,9 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
             var msg = JSON.parse(evt.data);
             if (msg.type === 'chat') {
                 $rootScope.$broadcast('chat.new', msg.data);
+            } else {
+                if (!msg.type) return;
+                $rootScope.$broadcast(msg.type, msg.data);
             }
         });
     });
