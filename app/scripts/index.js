@@ -45,6 +45,14 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
             }
         });
 
+        $rootScope.$on('biz', function(xx, data) {
+            $rootScope._hasRead = false;
+            data.type = 'biz';
+            data.timestamp = new Date();
+            $rootScope._unreadChats = $rootScope._unreadChats ? $rootScope._unreadChats : [];
+            $rootScope._unreadChats.push(data);
+        });
+
         $rootScope.$on('jump.response', function(xx, data) {
             var alertPopup = $ionicPopup.alert({
                 title: '恭喜',
