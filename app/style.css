@@ -336,11 +336,11 @@ body{
 .tplist .tplist_ul .tplist_list .tp_content_c{
     float:left;
     margin-bottom: 10px;
-    max-width: 58%;
+    max-width: 60%;
 }
 .tplist .tplist_ul .tplist_list .tp_content_r{
     float:right;
-    width: 100px;
+    width: 80px;
 }
 .tplist .tplist_ul .tplist_list .tp_content_r .button{
     width:80px;
