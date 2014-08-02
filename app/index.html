@@ -1,0 +1,75 @@
+<html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>OneFan - Mobile</title>
+    <link href="http://code.ionicframework.com/1.0.0-beta.4/css/ionic.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="http://code.ionicframework.com/1.0.0-beta.4/js/ionic.bundle.js"></script>
+  </head>
+  <body>
+
+
+    <ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+      <ion-nav-back-button class="button-icon ion-arrow-left-c">
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+
+    <script id="tabs.html" type="text/ng-template">
+      <ion-tabs class="tabs-icon-top tabs-positive">
+
+        <ion-tab title="取号" icon="ion-home" href="#/tab/order">
+          <ion-nav-view name="order-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="拼桌" icon="ion-ios7-information" href="#/tab/argue">
+          <ion-nav-view name="argue-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="我的信息" icon="ion-ios7-world" ui-sref="tabs.profile">
+          <ion-nav-view name="profile-tab"></ion-nav-view>
+        </ion-tab>
+
+      </ion-tabs>
+    </script>
+
+    <script type="text/ng-template" id="order-location.html">
+      order-location
+    </script>
+
+    <script type="text/ng-template" id="order-form.html">
+      order-form
+    </script>
+
+    <script type="text/ng-template" id="order-info.html">
+      order-info
+    </script>
+
+
+    <script type="text/ng-template" id="argue-list.html">
+      argue-list
+    </script>
+
+    <script type="text/ng-template" id="argue-detail.html">
+      argue-detail
+    </script>
+
+    <script type="text/ng-template" id="argue-finish.html">
+      argue-finish
+    </script>
+
+    <!-- message list , chat -> argue detail -->
+    <script type="text/ng-template" id="profile-detail.html">
+      profile-detail
+    </script>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/ctrls.js"></script>
+    <script src="scripts/directive.js"></script>
+    <script src="scripts/service.js"></script>
+    <script src="scripts/filter.js"></script>
+  </body>
+</html>
