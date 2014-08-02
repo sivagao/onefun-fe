@@ -5,7 +5,9 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
     })
     .run(function($rootScope, WebSocket) {
         window._APIHOST = 'http://172.16.121.65:9091';
-        window._deviceId = 'acb' + new Date().getTime();
+        // window._deviceId = 'acb' + new Date().getTime();
+        window._deviceId = 'acb1406978998599';
+        $rootScope._deviceId = window._deviceId;
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             console.log(arguments);

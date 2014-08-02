@@ -57,24 +57,16 @@ angular.module('ionicApp')
 
         $scope.submitOrder = function() {
             // form validator
-            // mock
-            $scope.info = {
-                "isAccept": 1,
-                "nickName": "siva",
-                "customerNum": 5,
-                "phoneNum": "18600024232",
-                "introText": "hello xixixi",
-                "deviceId": "acb1406973507008"
-            };
-            // end mock
-
             $scope.info.deviceId = window._deviceId;
             $scope.info.isAccept = $scope.info.isAccept ? 1 : 0;
+            if ($scope.info.tableCapacity === $scope.info.customerNum) {
+                $scope.info.isAccept = 0;
+            }
             apiHelper('postPreOrderInfo', {
                 data: $scope.info
-            })['finally'](function(resp) {
+            }).then(function(resp) {
                 showAlert();
-                $rootScope.preOrderInfo = $scope.info;
+                $rootScope.preOrderInfo = resp;
             });
         };
 
@@ -93,7 +85,7 @@ angular.module('ionicApp')
                 window._availableTableTypes = [4, 6, 8];
             }
             return _.min(_.filter(window._availableTableTypes, function(item) {
-                return item > val;
+                return item >= val;
             }));
         }
     })
@@ -110,12 +102,15 @@ angular.module('ionicApp')
 
         };
     })
-    .controller('argueListCtrl', function($scope, $state) {
+    .controller('argueListCtrl', function($scope, $state, apiHelper) {
 
         // refresh, goOrderForm, goArgueDetail
         // getAvaibleList[with my special item]
         // todo: cancelArgue
 
+        apiHelper('getAvailableList').then(function(resp) {
+            $scope.availableList = resp;
+        });
     })
     .controller('argueDetailCtrl', function($scope, $rootScope) {
         // chat mode

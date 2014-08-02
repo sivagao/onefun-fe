@@ -13,7 +13,9 @@
               <input type="text"
                 placeholder="手机号" ng-model="info.phoneNum">
             </label>
-            <ion-toggle ng-init="info.isAccept=true"
+            <ion-toggle
+              ng-hide="info.customerNum === info.tableCapacity"
+              ng-init="info.isAccept=true"
               ng-model="info.isAccept"
               ng-checked="info.isAccept">
               是否接受拼桌
@@ -25,7 +27,8 @@
               <span class="tip_warn_text">
                 <b>提示：</b>接受拼桌不影响正常排队，还有机会快速入座，结识新朋友哦~</div>
               </span>
-            <div class="tip_show" ng-show="info.isAccept && info.customerNum">
+            <div class="tip_show"
+              ng-show="info.isAccept && info.customerNum">
               <span class="tip_show_text" ng-show="info.tableCapacity">
                 <i class="icon ion-coffee"></i>
                 自动为您分配：<b>{{info.tableCapacity}}人桌</b>

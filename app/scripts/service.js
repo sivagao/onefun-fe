@@ -5,7 +5,9 @@ angular.module('ionicApp')
             'getRestaurantList': 'GET /restaurant/list',
             'getResturant': 'GET /restaurant',
 
-            'postPreOrderInfo': 'POST /preorder'
+            'postPreOrderInfo': 'POST /preorder',
+
+            'getAvailableList': 'GET /preorder/list'
 
         });
     });

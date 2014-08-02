@@ -23,7 +23,8 @@
                 <dd class="home_numinfo_dd">
                   <label>手机：</label><span>{{preOrderInfo.phoneNum}}</span>
                 </dd>
-                <dd class="home_numinfo_dd home_numinfo_dd_together">
+                <dd class="home_numinfo_dd home_numinfo_dd_together"
+                  ng-hide="preOrderInfo.customerNum === preOrderInfo.tableCapacity">
                   <label>拼桌：</label>
                   <span>{{preOrderInfo.isAccept?'接受': '不接受'}}</span>
                   <label class="item-choice-toggle toggle">
