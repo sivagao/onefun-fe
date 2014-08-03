@@ -1,0 +1,25 @@
+{
+  "name": "onefun-fe",
+  "version": "0.0.0",
+  "description": "Summary:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gaohailang/onefun-fe.git"
+  },
+  "author": "sivagao <sivagao@126.com> (http://weibo.com/1siva)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaohailang/onefun-fe/issues"
+  },
+  "homepage": "https://github.com/gaohailang/onefun-fe",
+  "dependencies": {
+    "del": "^0.1.1",
+    "gulp": "^3.8.7",
+    "gulp-concat": "^2.3.4",
+    "gulp-uglify": "^0.3.1"
+  }
+}
