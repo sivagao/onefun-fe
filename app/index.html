@@ -11,6 +11,28 @@
     <script src="vendor/ionic.bundle.min.js"></script>
     <script src="vendor/underscore-min.js"></script>
     <script src="vendor/zepto.min.js"></script>
+
+    <script name="baidu-tc-cerfication" type="text/javascript" charset="utf-8" src="http://apps.bdimg.com/blend/loader.js"></script>
+    <script type="text/javascript">
+      //首先输入轻应用的ak
+       clouda.lightInit({
+            ak:"9ZBrTBViAjqGidGBZQjoGxgw",
+            module:["device"]
+        });
+
+       var getDeviceId = function(){
+           clouda.device.device.getImei({
+                   onfail : function(err){
+                           alert(JSON.stringify(err));
+                   },
+                   onsuccess : function(data){
+                           //返回读取到的图片文件的本地全信息
+                           alert(data);
+                   }
+           });
+       };
+       getDeviceId();
+    </script>
   </head>
   <body>
 
