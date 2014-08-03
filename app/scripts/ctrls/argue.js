@@ -6,6 +6,12 @@ angular.module('ionicApp')
         // todo: cancelArgue
 
         $scope.goArgueDetail = function(who) {
+            if (!$scope.myselfOrder) {
+                $ionicPopup.alert({
+                    title: '出错啦',
+                    template: '请您先预约单号'
+                });
+            }
             var _x = _.min([who.preOrderNum, $scope.myselfOrder.preOrderNum]);
             var _cap = _.filter([who, $scope.myselfOrder], function(i) {
                 return (i.preOrderNum === _x);

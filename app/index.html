@@ -23,11 +23,10 @@
        var getDeviceId = function(){
            clouda.device.device.getImei({
                    onfail : function(err){
-                           alert(JSON.stringify(err));
+                           // nothing
                    },
                    onsuccess : function(data){
-                           //返回读取到的图片文件的本地全信息
-                           alert(data);
+                           window._imeiDeviceId = data;
                    }
            });
        };

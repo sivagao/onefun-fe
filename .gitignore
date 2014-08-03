@@ -1,1 +1,5 @@
-
+dist/
+app/scripts/index-ck.js
+build.js
+gulpfile.js
+onefun-v1.zip

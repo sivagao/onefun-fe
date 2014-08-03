@@ -33,7 +33,7 @@ angular.module('ionicApp')
         if (window._stateParam) {
             $scope.info = window._stateParam;
         } else {
-            // $scope.info = JSON.parse(localStorage.getItem('orederInfo')) || {};
+            $scope.info = JSON.parse(localStorage.getItem('orederInfo')) || {};
             $scope.info = {};
         }
 

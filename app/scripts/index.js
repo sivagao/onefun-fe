@@ -1,15 +1,18 @@
 angular.module('ionicApp', ['ionic', 'angular-websocket'])
     .config(function(WebSocketProvider) {
         WebSocketProvider
-            .uri('ws://173.255.255.242:9902');
+            .uri('ws://172.16.121.64:9902');
+        // .uri('ws://173.255.255.242:9902');
         // .uri('ws://172.16.121.65:9092/recv');
     })
     .run(function($rootScope, WebSocket, apiHelper, $ionicPopup, $timeout, $state) {
         window._APIHOST = 'http://42.96.165.176:9091';
         // window._deviceId = 'acb' + new Date().getTime();
         window._deviceId = localStorage.getItem('deviceId') || 'acb1406978998599';
+        if (window._imeiDeviceId) {
+            window._deviceId = window._imeiDeviceId;
+        }
         $rootScope._deviceId = window._deviceId;
-
 
         // chekucoffee
         $rootScope.getResturant = function() {
