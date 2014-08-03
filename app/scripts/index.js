@@ -1,19 +1,20 @@
 angular.module('ionicApp', ['ionic', 'angular-websocket'])
     .config(function(WebSocketProvider) {
         WebSocketProvider
-            .uri('ws://172.16.121.64:9902');
+            .uri('ws://173.255.255.242:9902');
         // .uri('ws://172.16.121.65:9092/recv');
     })
     .run(function($rootScope, WebSocket, apiHelper, $ionicPopup, $timeout, $state) {
-        window._APIHOST = 'http://172.16.121.65:9091';
+        window._APIHOST = 'http://42.96.165.176:9091';
         // window._deviceId = 'acb' + new Date().getTime();
         window._deviceId = localStorage.getItem('deviceId') || 'acb1406978998599';
         $rootScope._deviceId = window._deviceId;
 
 
+        // chekucoffee
         $rootScope.getResturant = function() {
             apiHelper('getResturant', {
-                slug: 'chekucoffee'
+                slug: '3wcoffee'
             }, {}).then(function(resp) {
                 console.log(resp);
                 $rootScope.loading && $rootScope.loading.hide();
@@ -60,7 +61,7 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
                 template: '您的换位请求已经被答应'
             });
             $timeout(function() {
-                $state.reload();
+                location.reload();
             }, 1000);
         });
 
@@ -79,13 +80,13 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
                     }));
                     apiHelper('changeOrder', {
                         params: {
-                            fromDeviceId: datafromDeviceId,
+                            fromDeviceId: data.fromDeviceId,
                             toDeviceId: data.toDeviceId,
                             changeOrderMoney: 12
                         }
                     }).then(function() {
                         $timeout(function() {
-                            $state.reload();
+                            location.reload();
                         }, 500);
                     });
                     console.log('You are sure');
