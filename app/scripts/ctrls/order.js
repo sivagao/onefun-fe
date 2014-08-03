@@ -33,7 +33,12 @@ angular.module('ionicApp')
         if (window._stateParam) {
             $scope.info = window._stateParam;
         } else {
-            $scope.info = localStorage.getItem('orederInfo') || {};
+            // $scope.info = JSON.parse(localStorage.getItem('orederInfo')) || {};
+            $scope.info = {};
+        }
+
+        if (window._myselfOrder) {
+            $scope.info = _myselfOrder;
         }
 
         $scope.$watch('info.customerNum', function(val) {
@@ -64,7 +69,7 @@ angular.module('ionicApp')
                 showAlert();
                 $rootScope.preOrderInfo = resp;
                 localStorage.setItem('orederInfo',
-                    _.pick($scope.info, 'nickName', 'isAccept', 'introText')
+                    JSON.stringify(_.pick($scope.info, 'nickName', 'isAccept', 'introText'))
                 );
             });
         };
@@ -89,8 +94,11 @@ angular.module('ionicApp')
         }
     })
     .controller('orderInfoCtrl', function($scope, $rootScope, apiHelper, $state) {
-        if (window._myselfOrder) {
-            $rootScope.preOrderInfo = _myselfOrder;
+
+        if (!$rootScope.preOrderInfo) {
+            if (window._myselfOrder) {
+                $rootScope.preOrderInfo = _myselfOrder;
+            }
         }
 
         if (!$rootScope.resturantInfo) {

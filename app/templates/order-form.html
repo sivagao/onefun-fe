@@ -12,7 +12,7 @@
                   placeholder="称呼:" ng-model="info.nickName">
               </label>
               <label class="item item-input">
-                <input type="number" ng-pattern="^\d*$" required name="phoneNum"
+                <input type="text" ng-pattern="/^\d*$/" required name="phoneNum"
                   placeholder="手机号:" ng-model="info.phoneNum">
               </label>
               <ion-toggle

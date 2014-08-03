@@ -6,13 +6,16 @@
           对方：{{_arguePeople.nickName}} 共 {{_arguePeople.customerNum}} 人
         </td>
          <td class="status">
-          <button class="onefun-button-useless">{{agree.other?'已同意':'未同意'}}</button>
+          <button
+            ng-class="{'onefun-button-useless': !agree.other,
+             'onefun-button': argree.other}">{{agree.other?'已同意':'未同意'}}</button>
         </td>
       </tr>
       <tr>
          <td class="user">我：</td>
          <td class="status">
-           <button class="onefun-button"
+           <button ng-class="{'onefun-button-useless': !agree.self,
+             'onefun-button': argree.self}"
             ng-disabled="agree.self"
             ng-click="agreeTojoin()">
             {{agree.self?'已同意':'未同意'}}
@@ -23,7 +26,7 @@
 
     <ol class="discussion chat-list">
       <li
-        ng-repeat="i in msgList"
+        ng-repeat="i in msgList track by $index"
         ng-class="getMsgClass(i)">
         <div class="avatar">
           <div random-avatar></div>

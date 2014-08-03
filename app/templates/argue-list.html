@@ -5,7 +5,11 @@
       <button class="button button-small onefun-button" ui-sref="tabs.order">发起我的拼桌</button>
     </h2>
     <ul class="tplist_ul">
-      <li class="tplist_list tplist_list_first clearfix"
+      <li ng-hide="availableList" class="x-list_none">
+        <h3 class="none">暂无可拼！</h3>
+      </li>
+
+      <li class="tplist_list tplist_list_first clearfix" ng-show="availableList"
         ng-repeat="i in availableList|filter: {deviceId: _deviceId}">
         <div class="tp_num">
           <span class="tp_num_info">{{i.tableCapacity}}缺
@@ -16,13 +20,14 @@
           <div class="tp_content_c">
             <h3 class="title">
               {{i.nickName}} 共{{i.customerNum}}人
-              <a class="button button-small onefun-button-yellow" ui-sref="tabs.order-info">我的拼桌</a>
+              <a class="button button-small onefun-button-yellow">我的拼桌</a>&nbsp;
+              &nbsp;<a class="button button-small onefun-button-yellow" ng-show="i.isAccept == 2">已拼桌</a>
             </h3>
             <span class="info"><i class="icon ion-quote"></i>
               可拼 - {{i.tableCapacity}}人桌，
               {{i|inferLeftStr}}</span>
           </div>
-          <div class="tp_content_r">
+          <div class="tp_content_r" ng-hide="i.isAccept == 2">
             <button class="button button-small onefun-button-green"
               ng-click="goSelfSetting()">设置</button>
           </div>
@@ -37,18 +42,20 @@
         <div class="tp_num">
           <span class="tp_num_info">{{i.tableCapacity}}缺
           <b>{{i|inferLeftCount}}</b></span>
-          <span class="tp_num_code">123</span>
+          <span class="tp_num_code">{{i.preOrderNum}}</span>
         </div>
         <div class="tp_content clearfix">
           <div class="tp_content_c">
             <h3 class="title">
-              {{i.nickName}} 共{{i.customerNum}}人</h3>
+              {{i.nickName}} 共{{i.customerNum}}人
+              <a class="button button-small onefun-button-yellow" ng-show="i.isAccept == 2">已拼桌</a>
+            </h3>
             <span class="info">
               <i class="icon ion-quote"></i>
               可拼 - {{i.tableCapacity}}人桌，
               {{i|inferLeftStr}}</span>
           </div>
-          <div class="tp_content_r">
+          <div class="tp_content_r" ng-hide="i.isAccept == 2">
             <button class="button button-small onefun-button-green"
               ng-click="goArgueDetail(i)">联系</button>
             <button class="button button-small onefun-button-green"

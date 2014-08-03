@@ -23,8 +23,16 @@ angular.module('ionicApp')
             })[0];
         }
 
+        $rootScope.$watch('_unreadChats', function(list) {
+            if (!list) return;
+            init();
+        });
+
         function init() {
             $scope.unreadChats = _.map($rootScope._unreadChats, function(i) {
+                if (i.type === 'biz') {
+                    return i;
+                }
                 return {
                     from: findFromOrder(i.fromDeviceId),
                     timestamp: i.timestamp,

@@ -1,25 +1,39 @@
 angular.module('ionicApp')
-    .controller('argueListCtrl', function($scope, $rootScope, $state, apiHelper, WebSocket, $ionicPopup, $timeout) {
+    .controller('argueListCtrl', function($scope, $rootScope, $state, apiHelper, WebSocket, $ionicPopup, $timeout, $interval) {
 
         // refresh, goOrderForm, goArgueDetail
         // getAvaibleList[with my special item]
         // todo: cancelArgue
 
         $scope.goArgueDetail = function(who) {
-            $rootScope._arguePeople = who;
-            $state.go('tabs.argue-detail');
+            var _x = _.min([who.preOrderNum, $scope.myselfOrder.preOrderNum]);
+            var _cap = _.filter([who, $scope.myselfOrder], function(i) {
+                return (i.preOrderNum === _x);
+            })[0];
+
+            var _count = who.customerNum + $scope.myselfOrder.customerNum;
+            if (_count <= _cap.tableCapacity) {
+                $rootScope._arguePeople = who;
+                $state.go('tabs.argue-detail');
+            } else {
+                // error handler
+                $ionicPopup.alert({
+                    title: '出错啦',
+                    template: '您不满足拼桌条件'
+                });
+            }
         };
 
         $scope.goSelfSetting = function() {
             window._myselfOrder = $scope.myselfOrder;
-            $state.go('tabs.order-info');
+            $state.go('tabs.order-form');
         };
 
         $scope.askJumpQueue = function(other) {
             var myPopup = $ionicPopup.show({
                 template: '<input type="number" ng-model="$parent.queueMoney">',
                 title: '申请换号',
-                subTitle: 'Please use normal things',
+                subTitle: '您可以输入报酬以申请靠前队伍喔',
                 scope: $scope,
                 buttons: [{
                     text: 'Cancel'
@@ -51,31 +65,50 @@ angular.module('ionicApp')
             }))
         };
 
-        $scope.canJumpQueeu = function(other) {
-            if ($scope.myselfOrder.preOrderNum > other.preOrderNum) {
-                if ($scope.myselfOrder.tableCapacity === other.tableCapacity) {
-                    return true;
+        function init() {
+            apiHelper('getAvailableList').then(function(resp) {
+                if (_.isArray(resp)) {
+                    $scope.availableList = resp || [];
+                } else {
+                    $scope.availableList = [];
                 }
-            }
-            return false;
-        };
+                $rootScope.availableList = resp;
+                $scope.myselfOrder = _.filter(resp, function(i) {
+                    if (i.deviceId === window._deviceId) {
+                        return true;
+                    }
+                    return false;
+                })[0];
 
-        apiHelper('getAvailableList').then(function(resp) {
-            $scope.availableList = resp;
-            $rootScope.availableList = resp;
-            $scope.myselfOrder = _.filter(resp, function(i) {
-                if (i.deviceId === window._deviceId) {
-                    return true;
-                }
-                return false;
-            })[0];
-        });
+                $scope.canJumpQueeu = function(other) {
+                    if (!$scope.myselfOrder) {
+                        return false;
+                    }
+                    if ($scope.myselfOrder.preOrderNum > other.preOrderNum) {
+                        if ($scope.myselfOrder.tableCapacity === other.tableCapacity) {
+                            return true;
+                        }
+                    }
+                    return false;
+                };
+            });
+        }
+
+        // $interval(function() {
+        //     init();
+        // }, 2000);
+
+        init();
     })
-    .controller('argueDetailCtrl', function($scope, $rootScope, WebSocket, $timeout, $ionicPopup, apiHelper) {
+    .controller('argueDetailCtrl', function($scope, $rootScope, WebSocket, $timeout, $ionicPopup, apiHelper, $state) {
         $timeout(function() {
             $('.tabs').hide();
             $('.chatpanel').removeClass('has-tabs').find('.scroll').css('min-height', '100%');
             $('.chat-input').css('position', 'fixed');
+            $('.chatpanel .chat-list').css({
+                'overflow': 'scroll',
+                'height': $('.chatpanel .scroll').height() - $('.chat-status').height() - $('.chat-input').height()
+            });
         });
         $scope.msgList = [];
 
@@ -104,6 +137,7 @@ angular.module('ionicApp')
             console.log(data);
             // append to msgList
             $scope.msgList.push(data);
+            $('.chatpanel .chat-list')[0].scrollTop = 1200000000;
         });
 
 
@@ -119,6 +153,7 @@ angular.module('ionicApp')
                     toDeviceId: $rootScope._arguePeople.deviceId
                 }
             }));
+            $scope.agree.self = true;
         };
 
         $scope.$watch('agree', function(all) {
@@ -136,7 +171,7 @@ angular.module('ionicApp')
                 }
             }).then(function(resp) {
                 $rootScope._mergeOrderInfo = {
-                    preOrderNum: resp,
+                    preOrderNum: resp.preOrderNum,
                     other: $rootScope._arguePeople
                 };
                 $state.go('tabs.argue-finish');

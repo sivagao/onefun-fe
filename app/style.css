@@ -704,14 +704,6 @@ body{
     border-color: #efefef;
     background-color: #ffffff;
 }
-.setting .setting_ul .setting_list_none{
-    text-align: center;
-    padding:40px;
-}
-.setting .setting_ul .setting_list_none .none{
-    font-size: 14px;
-    color: #999999;
-}
 
 /*管理员页面 manage_list*/
 .manage_list .tplist .tplist_ul .tplist_list .tp_content_c{
@@ -733,3 +725,14 @@ body{
     min-height: 30px;
     font-size: 14px;
 }
+
+.x-list_none{
+    text-align: center;
+    padding:40px;
+}
+
+.x-list_none .none{
+    font-size: 14px;
+    color: #999999;
+}
+

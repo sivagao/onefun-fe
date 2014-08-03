@@ -1,7 +1,7 @@
 angular.module('ionicApp', ['ionic', 'angular-websocket'])
     .config(function(WebSocketProvider) {
         WebSocketProvider
-            .uri('ws://localhost:9902');
+            .uri('ws://172.16.121.64:9902');
         // .uri('ws://172.16.121.65:9092/recv');
     })
     .run(function($rootScope, WebSocket, apiHelper, $ionicPopup, $timeout, $state) {
@@ -80,14 +80,13 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
                     apiHelper('changeOrder', {
                         params: {
                             fromDeviceId: datafromDeviceId,
-                            toDeviceId: data.toDeviceId
+                            toDeviceId: data.toDeviceId,
+                            changeOrderMoney: 12
                         }
                     }).then(function() {
-                        // refresh?!
-                        // confirmPopup close
                         $timeout(function() {
                             $state.reload();
-                        }, 1000);
+                        }, 500);
                     });
                     console.log('You are sure');
                 } else {
