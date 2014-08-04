@@ -29,6 +29,7 @@ Event: 服务员通过管理界面（如三列： 四人桌，六人，八人）
 
 API:
 
+```
 商家列表：
 定位到商家：
 
@@ -43,3 +44,23 @@ API:
 同意后并单：
 
 已入座：
+```
+
+Prenstation:
+
+```
+ls -al materials/images |awk '{print "!["$9"](./materials/images/"$9")"}'
+```
+
+![onefan.001.jpg](./materials/images/onefan.001.jpg)
+![onefan.002.jpg](./materials/images/onefan.002.jpg)
+![onefan.003.jpg](./materials/images/onefan.003.jpg)
+![onefan.004.jpg](./materials/images/onefan.004.jpg)
+![onefan.005.jpg](./materials/images/onefan.005.jpg)
+![onefan.006.jpg](./materials/images/onefan.006.jpg)
+![onefan.007.jpg](./materials/images/onefan.007.jpg)
+![onefan.008.jpg](./materials/images/onefan.008.jpg)
+![onefan.009.jpg](./materials/images/onefan.009.jpg)
+![onefan.010.jpg](./materials/images/onefan.010.jpg)
+![onefan.011.jpg](./materials/images/onefan.011.jpg)
+![onefan.012.jpg](./materials/images/onefan.012.jpg)
