@@ -118,6 +118,12 @@ angular.module('ionicApp')
         });
         $scope.msgList = [];
 
+        $scope.keydownHandler = function(e) {
+            if (e.keyCode === 13) {
+                $scope.postMsg();
+            }
+        };
+
         function getMsgList() {
             apiHelper('getMsgList', {
                 from: '',
@@ -137,6 +143,10 @@ angular.module('ionicApp')
                 }
             }));
             $scope.$$childTail.chatText = '';
+            // Safari hide input
+            if (navigator.userAgent.indexOf("Chrome") === -1) {
+                $('.chat-input input').blur();
+            }
         };
 
         $scope.$on('chat.new', function(xx, data) {

@@ -63,9 +63,11 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
                 title: '恭喜',
                 template: '您的换位请求已经被答应'
             });
-            $timeout(function() {
-                location.reload();
-            }, 1000);
+            alertPopup.then(function() {
+                $state.go('tabs.argue', {}, {
+                    reload: true
+                });
+            });
         });
 
         $rootScope.$on('jump.request', function(xx, data) {
@@ -88,9 +90,9 @@ angular.module('ionicApp', ['ionic', 'angular-websocket'])
                             changeOrderMoney: 12
                         }
                     }).then(function() {
-                        $timeout(function() {
-                            location.reload();
-                        }, 500);
+                        $state.go('tabs.argue', {}, {
+                            reload: true
+                        });
                     });
                     console.log('You are sure');
                 } else {

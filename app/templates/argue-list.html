@@ -38,7 +38,7 @@
       </li>
 
       <li class="tplist_list clearfix"
-        ng-repeat="i in availableList|filter: {deviceId: '!'+_deviceId}">
+        ng-repeat="i in availableList|filter: {deviceId: '!'+_deviceId}|orderBy:'preOrderNum':false">
         <div class="tp_num">
           <span class="tp_num_info">{{i.tableCapacity}}缺
           <b>{{i|inferLeftCount}}</b></span>

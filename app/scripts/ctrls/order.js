@@ -34,7 +34,6 @@ angular.module('ionicApp')
             $scope.info = window._stateParam;
         } else {
             $scope.info = JSON.parse(localStorage.getItem('orederInfo')) || {};
-            $scope.info = {};
         }
 
         if (window._myselfOrder) {

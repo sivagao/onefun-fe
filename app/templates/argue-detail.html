@@ -37,7 +37,8 @@
       </li>
     </ol>
     <div class="chat-input">
-      <input type="text" placeholder="输入内容" ng-model="chatText" class="text">
+      <input type="text" placeholder="输入内容"
+        ng-model="chatText" class="text" ng-keydown="keydownHandler($event)">
       <button class="send" ng-click="postMsg()">发送</button>
     </div>
   </ion-content>
