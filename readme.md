@@ -1,3 +1,12 @@
+
+Build:
+
+```
+# install gulp globally, npm install
+gulp build
+gulp deploy # put generated dist into this repo gh-pages branch
+```
+
 Summary:
 
 ```
@@ -24,7 +33,6 @@ Event: 服务员通过管理界面（如三列： 四人桌，六人，八人）
 
 原则：边角料（选最接近（而且大于）人数的桌型）
 ```
-
 
 
 API:
